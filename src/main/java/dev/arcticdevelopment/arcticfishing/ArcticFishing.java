@@ -1,12 +1,14 @@
 
-package dev.arcticdevelopment.template;
+package dev.arcticdevelopment.arcticfishing;
 
+import dev.arcticdevelopment.arcticfishing.commands.BaseCommand;
 import dev.kyro.arcticapi.ArcticAPI;
+import dev.kyro.arcticapi.commands.ABaseCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Template extends JavaPlugin {
+public class ArcticFishing extends JavaPlugin {
 
-    public static Template INSTANCE;
+    public static ArcticFishing INSTANCE;
 
     @Override
     public void onEnable() {
@@ -34,7 +36,9 @@ public class Template extends JavaPlugin {
     }
 
     private void registerCommands() {
+        ABaseCommand apiCommand = new BaseCommand("arcticfishing");
 
+//        apiCommand.registerCommand(new SetExitLocation("setexit"));
 //        getCommand("printer").setExecutor(new PrinterCommand());
     }
 
