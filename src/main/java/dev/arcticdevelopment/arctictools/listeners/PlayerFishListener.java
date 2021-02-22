@@ -1,6 +1,8 @@
 package dev.arcticdevelopment.arctictools.listeners;
 
+import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,10 +20,14 @@ public class PlayerFishListener implements Listener {
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 
-		if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
-			event.setCancelled(true);
+		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")) {
+			System.out.println("lmfao" + WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing"));
+			return;
+		}
 
-			inventory.addItem(item);
+		if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
+
+			((Item) event.getCaught()).setItemStack(item);
 		}
 
 

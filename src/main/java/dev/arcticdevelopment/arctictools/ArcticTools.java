@@ -2,13 +2,30 @@
 package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
+import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
+import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ArcticTools extends JavaPlugin {
 
     public static ArcticTools INSTANCE;
+    public static Plugin WORLDGUARD;
+
+    @Override
+    public void onLoad() {
+        try {
+
+            WORLDGUARD = getServer().getPluginManager().getPlugin("WorldGuard");
+
+            WorldGuardHook.registerFlag("arctic-fishing",false);
+        } catch(Exception e) {
+            System.out.println("penis");
+        }
+
+    }
 
     @Override
     public void onEnable() {
@@ -44,6 +61,6 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerListeners() {
 
-//        getServer().getPluginManager().registerEvents(new PrinterEvents(), this);
+        getServer().getPluginManager().registerEvents(new PlayerFishListener(), this);
     }
 }
