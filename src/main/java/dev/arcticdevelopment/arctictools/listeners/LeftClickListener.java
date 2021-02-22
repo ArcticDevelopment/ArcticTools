@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arcticfishing.listeners;
+package dev.arcticdevelopment.arctictools.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

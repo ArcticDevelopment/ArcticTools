@@ -1,14 +1,14 @@
 
-package dev.arcticdevelopment.arcticfishing;
+package dev.arcticdevelopment.arctictools;
 
-import dev.arcticdevelopment.arcticfishing.commands.BaseCommand;
+import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ArcticFishing extends JavaPlugin {
+public class ArcticTools extends JavaPlugin {
 
-    public static ArcticFishing INSTANCE;
+    public static ArcticTools INSTANCE;
 
     @Override
     public void onEnable() {
@@ -36,7 +36,7 @@ public class ArcticFishing extends JavaPlugin {
     }
 
     private void registerCommands() {
-        ABaseCommand apiCommand = new BaseCommand("arcticfishing");
+        //ABaseCommand apiCommand = new BaseCommand("arcticfishing");
 
 //        apiCommand.registerCommand(new SetExitLocation("setexit"));
 //        getCommand("printer").setExecutor(new PrinterCommand());

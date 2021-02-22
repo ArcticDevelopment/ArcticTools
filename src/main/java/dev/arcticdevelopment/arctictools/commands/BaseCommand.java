@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arcticfishing.commands;
+package dev.arcticdevelopment.arctictools.commands;
 
 import dev.kyro.arcticapi.commands.ABaseCommand;
 import org.bukkit.command.CommandSender;
@@ -9,6 +9,7 @@ import java.util.List;
 public class BaseCommand extends ABaseCommand {
 
 	public BaseCommand(String baseExecutor) {
+
 
 		super(baseExecutor);
 	}

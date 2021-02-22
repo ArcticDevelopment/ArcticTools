@@ -1,6 +1,6 @@
-name: Template
+name: ArcticTools
 authors: [ KyroKrypt, Finn ]
 version: 1.0.0
-main: dev.kyro.arcticprinter.ArcticPrinter
+main: dev.arcticdevelopment.arctictools.ArcticTools
 description: Template plugin
 commands:
