@@ -5,3 +5,4 @@ main: dev.arcticdevelopment.arctictools.ArcticTools
 description: Template plugin
 softdepend: [ WorldGuard ]
 commands:
+  arctictools:

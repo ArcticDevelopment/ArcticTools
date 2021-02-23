@@ -1,5 +1,6 @@
-package dev.arcticdevelopment.arctictools.utilities;
+package dev.arcticdevelopment.arctictools.utilities.rods;
 
+import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -10,21 +11,21 @@ public class FishDrop {
 	public static List<FishDrop> drops = new ArrayList<>();
 
 	public ItemStack drop;
-	public String rarity;
+	public FishDropRarity rarity;
 
 	public ItemStack getDrop() {
 		return drop;
 	}
 
-	public FishDrop(ItemStack drop, String rarity) {
+	public FishDrop(ItemStack drop, FishDropRarity rarity) {
 
 		this.rarity = rarity;
 		this.drop = drop;
 		drops.add(this);
 	}
 
-	public String getRarity() {
+	public FishDropRarity getRarity() {
+
 		return rarity;
 	}
-
 }

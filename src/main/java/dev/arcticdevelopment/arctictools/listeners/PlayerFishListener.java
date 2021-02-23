@@ -1,6 +1,6 @@
 package dev.arcticdevelopment.arctictools.listeners;
 
-import dev.arcticdevelopment.arctictools.utilities.FishDrop;
+import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.builders.ALoreBuilder;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.Material;
@@ -44,7 +44,5 @@ public class PlayerFishListener implements Listener {
 
 			((Item) event.getCaught()).setItemStack(drop);
 		}
-
-
 	}
 }
