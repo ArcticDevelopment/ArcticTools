@@ -3,6 +3,7 @@ package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRod;
+import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
@@ -71,6 +72,7 @@ public class ArcticTools extends JavaPlugin {
     private void registerListeners() {
 
         getServer().getPluginManager().registerEvents(new PlayerFishListener(), this);
+        getServer().getPluginManager().registerEvents(new LeftClickListener(), this);
     }
 
     private void registerFish() {

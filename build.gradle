@@ -20,7 +20,7 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
-    compile 'com.github.ArcticDevelopment:ArcticAPI:92087ef21d'
+    compile 'com.github.ArcticDevelopment:ArcticAPI:362db7d06f'
 
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
 
