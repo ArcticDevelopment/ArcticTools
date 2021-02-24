@@ -1,11 +1,10 @@
 package dev.arcticdevelopment.arctictools.commands;
 
-import dev.arcticdevelopment.arctictools.ArcticTools;
-import dev.arcticdevelopment.arctictools.utilities.rods.RodManager;
+import dev.kyro.arcticapi.builders.AItemStackBuilder;
 import dev.kyro.arcticapi.commands.ASubCommand;
-import org.bukkit.ChatColor;
+import dev.kyro.arcticapi.nms.ANBTItemStack;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -13,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 public class GiveRod extends ASubCommand {
 
@@ -29,26 +28,29 @@ public class GiveRod extends ASubCommand {
 
 		int leftLimit = 48;
 		int rightLimit = 122;
-		int targetStringLength = 15;
+		int targetStringLength = 25;
 
 		Player player = (Player) sender;
 		Inventory playerInventory = player.getInventory();
-		ItemStack rod = new ItemStack(Material.FISHING_ROD);
-		ItemMeta rodMeta = rod.getItemMeta();
-		Random random = new Random();
-
-		String randomString = random.ints(leftLimit, rightLimit + 1)
-				.filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-				.limit(targetStringLength)
-				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-				.toString();
-
-		System.out.println(randomString);
+		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
+		ItemMeta rodMeta = rodItemStack.getItemMeta();
+		rodItemStack.setItemMeta(rodMeta);
 
 
-		rod.setItemMeta(rodMeta);
+		ANBTItemStack NBTItemStack = new ANBTItemStack(rodItemStack);
+		ItemMeta NBTMeta = NBTItemStack.getItemMeta();
+		NBTMeta = NBTItemStack.hasItemMeta() ? NBTItemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(NBTItemStack.getType());
+		NBTItemStack.setItemMeta(NBTMeta);
+		String identifier = UUID.randomUUID().toString();
+		System.out.println(NBTItemStack);
+		System.out.println(identifier);
 
-		playerInventory.addItem(rod);
+		NBTItemStack.setNBTTag("UUID",identifier);
+		NBTItemStack.setNBTTag("TotalFish", String.valueOf(0));
+		playerInventory.addItem(NBTItemStack);
+
+
+
 
 //		if (args.size() == 0) {
 //
