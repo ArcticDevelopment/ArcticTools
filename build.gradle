@@ -13,18 +13,17 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url 'https://jitpack.io' }
-    maven { url "https://maven.enginehub.org/repo/" }
-
+    maven { url 'https://maven.enginehub.org/repo/' }
+    maven { url 'https://repo.codemc.org/repository/maven-public/' }
 }
 
 dependencies {
+    compile 'com.github.ArcticDevelopment:ArcticAPI:362db7d06f'
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
-    compile 'com.github.ArcticDevelopment:ArcticAPI:362db7d06f'
-
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
-
     compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.7.1'
 
     //compile 'com.github.tr7zw:Item-NBT-API:2.7.1'
 

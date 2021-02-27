@@ -1,9 +1,8 @@
 package dev.arcticdevelopment.arctictools.commands;
 
-import dev.kyro.arcticapi.builders.AItemStackBuilder;
+import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.utilities.NBTTags;
 import dev.kyro.arcticapi.commands.ASubCommand;
-import dev.kyro.arcticapi.nms.ANBTItemStack;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -41,12 +40,11 @@ public class GiveRodCommand extends ASubCommand {
 
 		rodItemStack.setItemMeta(rodMeta);
 
-		ANBTItemStack NBTItemStack = new ANBTItemStack(rodItemStack);
 		String identifier = UUID.randomUUID().toString();
-
-		NBTItemStack.setNBTTag("RodUUID",identifier);
-		NBTItemStack.setNBTTag("TotalFish", String.valueOf(0));
-		playerInventory.addItem(NBTItemStack);
+		NBTItem nbtItem = new NBTItem(rodItemStack);
+		nbtItem.setString(NBTTags.ROD_UUID.getRef(), identifier);
+		nbtItem.setInteger(NBTTags.ROD_FISH.getRef(), 0);
+		playerInventory.addItem(nbtItem.getItem());
 
 
 

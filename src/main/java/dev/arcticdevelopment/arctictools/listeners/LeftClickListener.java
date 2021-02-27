@@ -26,11 +26,6 @@ public class LeftClickListener implements Listener {
 		event.setCancelled(true);
 
 		player.openInventory(new RodUpgradeGUI(player).getInventory());
-
-//		RodUpgradeGUI rodUpgradeGUI = new RodUpgradeGUI("Rod Upgrades",6);
-
-
-		//player.openInventory(RodUpgradeUI.create(player).getInventory());
 		ASound.play(player, Sound.BAT_TAKEOFF, 1000, 1);
 	}
 
