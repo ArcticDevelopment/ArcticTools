@@ -5,9 +5,9 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class GiveHoe extends ASubCommand {
+public class GiveHoeCommand extends ASubCommand {
 
-	public GiveHoe(String executor) {
+	public GiveHoeCommand(String executor) {
 
 		super(executor);
 	}

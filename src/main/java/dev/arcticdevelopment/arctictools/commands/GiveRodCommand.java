@@ -15,9 +15,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.UUID;
 
-public class GiveRod extends ASubCommand {
+public class GiveRodCommand extends ASubCommand {
 
-	public GiveRod(String executor) {
+	public GiveRodCommand(String executor) {
 
 		super(executor);
 	}

@@ -5,9 +5,9 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class GiveSword extends ASubCommand {
+public class GiveSwordCommand extends ASubCommand {
 
-	public GiveSword(String executor) {
+	public GiveSwordCommand(String executor) {
 
 		super(executor);
 	}

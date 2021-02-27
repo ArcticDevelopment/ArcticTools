@@ -12,32 +12,9 @@ import java.util.ArrayList;
 
 public class RodUpgradeInventory {
 
-	public RodUpgradeUI rodUpgradeUI = new RodUpgradeUI("thing",6);
+//	public RodUpgradeGUI rodUpgradeGUI = new RodUpgradeGUI("thing",6);
 
 	public static void click(InventoryClickEvent event, Player player, Inventory openInventory, ItemStack clickedItem) {
-
-		event.setCancelled(true);
-
-		switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
-			case "&b&lLuck":
-				System.out.println("luck");
-				return;
-			case "&c&lSpawner Finder":
-				System.out.println("spawner");
-				return;
-			case "&f&lLure":
-				System.out.println("lure");
-				return;
-			case "&6&lSize Boost":
-				System.out.println("size boost");
-				return;
-			case "&a&lKeys Finder":
-				System.out.println("keys");
-				return;
-			case "&d&lCrystal Boost":
-				System.out.println("Crystal Boost");
-				return;
-		}
 	}
 
 	public static AInventoryBuilder create(Player player) {
@@ -62,7 +39,5 @@ public class RodUpgradeInventory {
 				.setSlot(Material.WATCH, 0 , 38, "&bWeapon Enchants", null)
 
 				.addEnchantGlint(true, 22);
-
-		this.rodUpgradeUI.inank and
 	}
 }

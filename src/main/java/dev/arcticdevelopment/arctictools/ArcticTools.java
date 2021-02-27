@@ -2,7 +2,7 @@
 package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
-import dev.arcticdevelopment.arctictools.commands.GiveRod;
+import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
@@ -65,7 +65,7 @@ public class ArcticTools extends JavaPlugin {
     private void registerCommands() {
         ABaseCommand apiCommand = new BaseCommand("arctictools");
 
-        apiCommand.registerCommand(new GiveRod("rod"));
+        apiCommand.registerCommand(new GiveRodCommand("rod"));
 //        getCommand("printer").setExecutor(new PrinterCommand());
     }
 

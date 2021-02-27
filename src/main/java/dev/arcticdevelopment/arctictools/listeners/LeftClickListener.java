@@ -1,6 +1,6 @@
 package dev.arcticdevelopment.arctictools.listeners;
 
-import dev.arcticdevelopment.arctictools.utilities.rods.RodUpgradeUI;
+import dev.arcticdevelopment.arctictools.utilities.rods.RodUpgradeGUI;
 import dev.kyro.arcticapi.misc.ASound;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -23,13 +23,15 @@ public class LeftClickListener implements Listener {
 
 		if (!player.isSneaking()) return;
 
-		RodUpgradeUI rodUpgradeUI = new RodUpgradeUI("Rod Upgrades",6);
+		event.setCancelled(true);
+
+		player.openInventory(new RodUpgradeGUI(player).getInventory());
+
+//		RodUpgradeGUI rodUpgradeGUI = new RodUpgradeGUI("Rod Upgrades",6);
 
 
 		//player.openInventory(RodUpgradeUI.create(player).getInventory());
 		ASound.play(player, Sound.BAT_TAKEOFF, 1000, 1);
-
-		event.setCancelled(true);
 	}
 
 }
