@@ -4,6 +4,7 @@ import dev.kyro.arcticapi.builders.AItemStackBuilder;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.nms.ANBTItemStack;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,18 +35,16 @@ public class GiveRod extends ASubCommand {
 		Inventory playerInventory = player.getInventory();
 		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
 		ItemMeta rodMeta = rodItemStack.getItemMeta();
+
+		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&b&nFishing&r &7Rod"));
+		rodMeta.spigot().setUnbreakable(true);
+
 		rodItemStack.setItemMeta(rodMeta);
 
-
 		ANBTItemStack NBTItemStack = new ANBTItemStack(rodItemStack);
-		ItemMeta NBTMeta = NBTItemStack.getItemMeta();
-		NBTMeta = NBTItemStack.hasItemMeta() ? NBTItemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(NBTItemStack.getType());
-		NBTItemStack.setItemMeta(NBTMeta);
 		String identifier = UUID.randomUUID().toString();
-		System.out.println(NBTItemStack);
-		System.out.println(identifier);
 
-		NBTItemStack.setNBTTag("UUID",identifier);
+		NBTItemStack.setNBTTag("RodUUID",identifier);
 		NBTItemStack.setNBTTag("TotalFish", String.valueOf(0));
 		playerInventory.addItem(NBTItemStack);
 

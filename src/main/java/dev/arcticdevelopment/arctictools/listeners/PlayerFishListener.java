@@ -4,6 +4,8 @@ import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.builders.ALoreBuilder;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import dev.kyro.arcticapi.nms.ANBTItemStack;
+import net.minecraft.server.v1_8_R3.NBTTagInt;
+import net.minecraft.server.v1_8_R3.NBTTagString;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -47,12 +49,12 @@ public class PlayerFishListener implements Listener {
 			((Item) event.getCaught()).setItemStack(drop);
 
 			ANBTItemStack NBTItemStack = new ANBTItemStack(event.getPlayer().getItemInHand());
-			ItemMeta NBTMeta = NBTItemStack.getItemMeta();
-			NBTMeta = NBTItemStack.hasItemMeta() ? NBTItemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(NBTItemStack.getType());
-			NBTItemStack.setItemMeta(NBTMeta);
 
 			int totalfish = NBTItemStack.getNBTTagInt("TotalFish",0) + 1;
-			NBTItemStack.setNBTTag("TotalFish", String.valueOf(0));
+
+			System.out.println("sdsds" + NBTItemStack.getNBTTagInt("TotalFish",14));
+
+			NBTItemStack.setNBTTag("TotalFish",  new NBTTagInt(totalfish));
 
 			event.getPlayer().setItemInHand(NBTItemStack);
 			System.out.println(totalfish);
