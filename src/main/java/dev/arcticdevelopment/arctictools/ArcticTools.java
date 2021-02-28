@@ -3,8 +3,8 @@ package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
-import dev.arcticdevelopment.arctictools.commands.controllers.RodEnchantManager;
-import dev.arcticdevelopment.arctictools.commands.enchants.rods.SpawnerFinderEnchant;
+import dev.arcticdevelopment.arctictools.controllers.RodEnchantManager;
+import dev.arcticdevelopment.arctictools.enchants.rods.SpawnerFinderEnchant;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;

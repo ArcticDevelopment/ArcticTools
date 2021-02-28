@@ -5,7 +5,6 @@ import dev.arcticdevelopment.arctictools.utilities.NBTTags;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.builders.ALoreBuilder;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
-import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,32 +23,28 @@ public class PlayerFishListener implements Listener {
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 
-		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")) {
-			return;
-		}
+		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
+				|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
 
-		if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
+		int random = (int) (Math.random() * FishDrop.drops.size());
+		ItemStack drop = new ItemStack(FishDrop.drops.get(random).getDrop());
+		ItemMeta dropMeta = drop.getItemMeta();
 
-			int random = (int) (Math.random() * FishDrop.drops.size());
-			ItemStack drop = new ItemStack(FishDrop.drops.get(random).getDrop());
-			ItemMeta dropMeta = drop.getItemMeta();
+		double multiplier = (double) Math.round(Math.random() * 10 * 100)/100;
 
-			double multiplier = (double) Math.round(Math.random() * 10 * 100)/100;
+		ALoreBuilder loreBuilder = new ALoreBuilder();
+		loreBuilder.addLore(multiplier + "");
 
-			ALoreBuilder loreBuilder = new ALoreBuilder();
-			loreBuilder.addLore(multiplier + "");
+		dropMeta.setLore(loreBuilder.getLore());
+		drop.setItemMeta(dropMeta);
 
-			dropMeta.setLore(loreBuilder.getLore());
-			drop.setItemMeta(dropMeta);
+		((Item) event.getCaught()).setItemStack(drop);
 
-			((Item) event.getCaught()).setItemStack(drop);
+		NBTItem nbtItem = new NBTItem(event.getPlayer().getItemInHand());
+		int totalFish = nbtItem.getInteger(NBTTags.ROD_FISH.getRef()) + 1;
+		nbtItem.setInteger(NBTTags.ROD_FISH.getRef(), totalFish);
+		event.getPlayer().setItemInHand(nbtItem.getItem());
 
-			NBTItem nbtItem = new NBTItem(event.getPlayer().getItemInHand());
-			int totalFish = nbtItem.getInteger(NBTTags.ROD_FISH.getRef()) + 1;
-			nbtItem.setInteger(NBTTags.ROD_FISH.getRef(), totalFish);
-			event.getPlayer().setItemInHand(nbtItem.getItem());
-
-			System.out.println(totalFish);
-		}
+		System.out.println(totalFish);
 	}
 }

@@ -1,11 +1,15 @@
-package dev.arcticdevelopment.arctictools.commands.controllers;
+package dev.arcticdevelopment.arctictools.controllers;
 
+import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.ArcticTools;
+import dev.arcticdevelopment.arctictools.utilities.NBTTags;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RodEnchantManager {
@@ -19,24 +23,22 @@ public class RodEnchantManager {
 
 	}
 
-//	public static HashMap<RodEnchant, Integer> getActiveEnchants(Player player) {
-//		HashMap<RodEnchant, Integer> activeEnchants = new HashMap<>();
-//
-//		ItemStack rod = player.getItemInHand();
-//
-//
-//		for(RodEnchant enchant : enchants) {
-//
-//			if(itemHasEnchant(item, enchant)) {
-//
-//				int level;
-//
-//				activeEnchants.put(enchant, level);
-//			}
-//
-//		}
-//		return activeEnchants;
-//	}
+	public static HashMap<RodEnchant, Integer> getActiveEnchants(Player player) {
+		HashMap<RodEnchant, Integer> activeEnchants = new HashMap<>();
+
+		ItemStack rod = player.getItemInHand();
+		NBTItem nbtItem = new NBTItem(rod);
+		if(!nbtItem.hasKey(NBTTags.ROD_UUID.getRef())) return activeEnchants;
+
+		for(RodEnchant enchant : enchants) {
+
+			if(!nbtItem.hasKey(enchant.getNBTTag().getRef())) continue;
+
+			int level = nbtItem.getInteger(enchant.getNBTTag().getRef());
+			activeEnchants.put(enchant, level);
+		}
+		return activeEnchants;
+	}
 
 	public static boolean itemHasEnchant(ItemStack item, RodEnchant enchant) {
 
