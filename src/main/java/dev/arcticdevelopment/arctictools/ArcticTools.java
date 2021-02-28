@@ -3,10 +3,10 @@ package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
-import dev.arcticdevelopment.arctictools.controllers.RodEnchantManager;
-import dev.arcticdevelopment.arctictools.enchants.rods.SpawnerFinderEnchant;
+import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
+import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
-import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
+import dev.arcticdevelopment.arctictools.controllers.FishManager;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
@@ -32,7 +32,6 @@ public class ArcticTools extends JavaPlugin {
 
             WorldGuardHook.registerFlag("arctic-fishing",false);
         } catch(Exception e) {
-            System.out.println("penis");
         }
 
     }
@@ -74,7 +73,7 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerListeners() {
 
-        getServer().getPluginManager().registerEvents(new PlayerFishListener(), this);
+        getServer().getPluginManager().registerEvents(new FishManager(), this);
         getServer().getPluginManager().registerEvents(new LeftClickListener(), this);
     }
 
@@ -186,6 +185,6 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerEnchants() {
 
-        RodEnchantManager.registerEnchant(new SpawnerFinderEnchant());
+        RodEnchant.registerEnchant(new TreasureFinderEnchant());
     }
 }

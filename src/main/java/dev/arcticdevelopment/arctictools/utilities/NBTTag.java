@@ -1,14 +1,14 @@
 package dev.arcticdevelopment.arctictools.utilities;
 
-public enum NBTTags {
+public enum NBTTag {
 
 	ROD_UUID("arod-uuid"),
 	ROD_FISH("arod-fish"),
-	ROD_ENCHANT_SPAWNERS("arod-spawners");
+	ROD_ENCHANT_TREASURE("arod-spawners");
 
 	private final String ref;
 
-	NBTTags(String ref) {
+	NBTTag(String ref) {
 
 		this.ref = ref;
 	}

@@ -1,7 +1,7 @@
 package dev.arcticdevelopment.arctictools.commands;
 
 import de.tr7zw.nbtapi.NBTItem;
-import dev.arcticdevelopment.arctictools.utilities.NBTTags;
+import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -42,8 +42,9 @@ public class GiveRodCommand extends ASubCommand {
 
 		String identifier = UUID.randomUUID().toString();
 		NBTItem nbtItem = new NBTItem(rodItemStack);
-		nbtItem.setString(NBTTags.ROD_UUID.getRef(), identifier);
-		nbtItem.setInteger(NBTTags.ROD_FISH.getRef(), 0);
+		nbtItem.setString(NBTTag.ROD_UUID.getRef(), identifier);
+		nbtItem.setInteger(NBTTag.ROD_FISH.getRef(), 0);
+		nbtItem.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
 		playerInventory.addItem(nbtItem.getItem());
 
 

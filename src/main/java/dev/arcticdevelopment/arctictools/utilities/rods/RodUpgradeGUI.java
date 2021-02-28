@@ -1,5 +1,8 @@
 package dev.arcticdevelopment.arctictools.utilities.rods;
 
+import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
+import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.builders.AInventoryBuilder;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
 import org.bukkit.Material;
@@ -14,9 +17,15 @@ import java.util.ArrayList;
 
 public class RodUpgradeGUI extends AInventoryGUI {
 
+	private NBTItem nbtRod;
+	private int rodSlot;
+
 	public RodUpgradeGUI(Player player) {
 
 		super("Upgrade Harvester Hoe", 6);
+
+		nbtRod = new NBTItem(player.getItemInHand());;
+		rodSlot = player.getInventory().getHeldItemSlot();
 
 		ItemStack itemStack = player.getItemInHand();
 		ItemMeta itemMeta = itemStack.getItemMeta();
@@ -34,12 +43,13 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 31, "&d&lCrystal Boost", null)
 
 				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
-				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore)
+//				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore)
 				.setSlot(Material.WATCH, 0 , 38, "&bWeapon Enchants", null)
 
 				.addEnchantGlint(true, 22);
 
 		baseGUI = inventoryBuilder.getInventory();
+		baseGUI.setItem(42, nbtRod.getItem());
 	}
 
 	@Override
@@ -49,6 +59,10 @@ public class RodUpgradeGUI extends AInventoryGUI {
 		Player player = (Player) event.getWhoClicked();
 
 		event.setCancelled(true);
+
+		nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef()) + 1);
+		RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(0));
+		player.getInventory().setItem(rodSlot, nbtRod.getItem());
 
 		if(!event.getCurrentItem().hasItemMeta()) return;
 
