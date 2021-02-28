@@ -4,9 +4,12 @@ package dev.arcticdevelopment.arctictools;
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
+import dev.arcticdevelopment.arctictools.enchants.rods.SoulboundEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.controllers.FishManager;
+import dev.arcticdevelopment.arctictools.listeners.OnPlayerDeathListener;
+import dev.arcticdevelopment.arctictools.listeners.PlayerRespawnListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
@@ -75,6 +78,8 @@ public class ArcticTools extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new FishManager(), this);
         getServer().getPluginManager().registerEvents(new LeftClickListener(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
     }
 
     private void registerFish() {
@@ -186,5 +191,6 @@ public class ArcticTools extends JavaPlugin {
     private void registerEnchants() {
 
         RodEnchant.registerEnchant(new TreasureFinderEnchant());
+        RodEnchant.registerEnchant(new SoulboundEnchant());
     }
 }

@@ -36,10 +36,10 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				.createBorder(Material.STAINED_GLASS_PANE, 7)
 
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 10, "&b&lLuck", null)
-				.setSlot(Material.ENCHANTED_BOOK, 0 , 13, "&c&lSpawner Finder", null)
+				.setSlot(Material.ENCHANTED_BOOK, 0 , 13, "&c&lSoulbound Finder", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 16, "&f&lLure", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 21, "&6&lSize Boost", null)
-				.setSlot(Material.ENCHANTED_BOOK, 0 , 23, "&a&lKeys Finder", null)
+				.setSlot(Material.ENCHANTED_BOOK, 0 , 23, "&a&lTreasue Finder", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 31, "&d&lCrystal Boost", null)
 
 				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
@@ -60,9 +60,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 		event.setCancelled(true);
 
-		nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef()) + 1);
-		RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(0));
-		player.getInventory().setItem(rodSlot, nbtRod.getItem());
+
 
 		if(!event.getCurrentItem().hasItemMeta()) return;
 
@@ -70,8 +68,13 @@ public class RodUpgradeGUI extends AInventoryGUI {
 			case "\u00a7b\u00a7lLuck":
 				System.out.println("luck");
 				return;
-			case "\u00a7c\u00a7lSpawner Finder":
-				System.out.println("spawner");
+			case "\u00a7c\u00a7lSoulbound":
+				System.out.println("soulbound");
+
+				nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) + 1);
+				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(1));
+				player.getInventory().setItem(rodSlot, nbtRod.getItem());
+
 				return;
 			case "\u00a7f\u00a7lLure":
 				System.out.println("lure");
@@ -79,8 +82,13 @@ public class RodUpgradeGUI extends AInventoryGUI {
 			case "\u00a76\u00a7lSize Boost":
 				System.out.println("size boost");
 				return;
-			case "\u00a7a\u00a7lKeys Finder":
-				System.out.println("keys");
+			case "\u00a7a\u00a7lTreasue Finder":
+				System.out.println("treasure");
+
+				nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef()) + 1);
+				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(0));
+				player.getInventory().setItem(rodSlot, nbtRod.getItem());
+
 				return;
 			case "\u00a7d\u00a7lCrystal Boost":
 				System.out.println("Crystal Boost");

@@ -8,9 +8,10 @@ public class TreasureDrop {
 
 	private int weight = 1;
 
-	public TreasureDrop(ItemStack itemStack) {
+	public TreasureDrop(ItemStack itemStack, int weight) {
 
 		this.itemStack = itemStack;
+		this.weight = weight;
 	}
 
 	public ItemStack getItemStack() {

@@ -45,6 +45,7 @@ public class GiveRodCommand extends ASubCommand {
 		nbtItem.setString(NBTTag.ROD_UUID.getRef(), identifier);
 		nbtItem.setInteger(NBTTag.ROD_FISH.getRef(), 0);
 		nbtItem.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
+		nbtItem.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
 		playerInventory.addItem(nbtItem.getItem());
 
 

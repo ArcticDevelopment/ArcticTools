@@ -23,8 +23,8 @@ public class FishManager implements Listener {
 
 	public FishManager() {
 
-		treasureDrops.add(new TreasureDrop(new ItemStack(Material.DIAMOND_BLOCK)));
-		treasureDrops.add(new TreasureDrop(new ItemStack(Material.EMERALD_BLOCK)));
+		treasureDrops.add(new TreasureDrop(new ItemStack(Material.DIAMOND_BLOCK),1));
+		treasureDrops.add(new TreasureDrop(new ItemStack(Material.EMERALD_BLOCK),1));
 	}
 
 	public static ItemStack getDrop(Player player, ItemStack rod) {
