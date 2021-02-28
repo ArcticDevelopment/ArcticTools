@@ -23,12 +23,10 @@ public class PlayerFishListener implements Listener {
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public static void rodCast(PlayerFishEvent event) {
 
-		ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 
 		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")) {
-			System.out.println("lmfao" + WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing"));
 			return;
 		}
 

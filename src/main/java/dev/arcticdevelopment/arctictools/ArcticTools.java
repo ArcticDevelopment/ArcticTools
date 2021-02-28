@@ -3,6 +3,8 @@ package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
+import dev.arcticdevelopment.arctictools.commands.controllers.RodEnchantManager;
+import dev.arcticdevelopment.arctictools.commands.enchants.rods.SpawnerFinderEnchant;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.listeners.PlayerFishListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
@@ -47,6 +49,7 @@ public class ArcticTools extends JavaPlugin {
         registerCommands();
         registerListeners();
         registerFish();
+        registerEnchants();
 
     }
 
@@ -179,5 +182,10 @@ public class ArcticTools extends JavaPlugin {
         item14.setItemMeta(itemMeta14);
         new FishDrop(item14, FishDropRarity.DIVINE);
 
+    }
+
+    private void registerEnchants() {
+
+        RodEnchantManager.registerEnchant(new SpawnerFinderEnchant());
     }
 }
