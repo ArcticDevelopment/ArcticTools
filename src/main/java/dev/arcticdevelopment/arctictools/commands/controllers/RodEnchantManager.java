@@ -19,7 +19,6 @@ public class RodEnchantManager {
 
 	}
 
-
 //	public static HashMap<RodEnchant, Integer> getActiveEnchants(Player player) {
 //		HashMap<RodEnchant, Integer> activeEnchants = new HashMap<>();
 //
