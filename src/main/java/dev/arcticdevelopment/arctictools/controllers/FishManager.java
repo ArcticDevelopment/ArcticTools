@@ -96,7 +96,10 @@ public class FishManager implements Listener {
 		event.getPlayer().setItemInHand(nbtItem.getItem());
 
 		FileConfiguration playerData = APlayerData.getPlayerData(player.getUniqueId());
+		playerData.set("ign", player.getName());
 		playerData.set("crystals", playerData.getInt("crystals") + getCrystals(player, nbtItem.getItem()));
+		playerData.set("total-fish", playerData.getInt("total-fish") + getCrystals(player, nbtItem.getItem()));
 		APlayerData.savePlayerData(player.getUniqueId());
+
 	}
 }

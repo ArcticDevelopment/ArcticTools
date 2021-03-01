@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,13 @@ public class RodUpgradeGUI extends AInventoryGUI {
 		String displayName = itemMeta.getDisplayName();
 		ArrayList<String> lore = (ArrayList<String>) itemMeta.getLore();
 
+		ItemStack playerhead = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+		SkullMeta playerheadmeta = (SkullMeta) playerhead.getItemMeta();
+		playerheadmeta.setOwner(player.getName());
+		playerheadmeta.setDisplayName(player.getDisplayName());
+		playerhead.setItemMeta(playerheadmeta);
+
+
 		AInventoryBuilder inventoryBuilder = new AInventoryBuilder(null, 54, "Rod Upgrades")
 				.createBorder(Material.STAINED_GLASS_PANE, 7)
 
@@ -43,13 +51,13 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 31, "&d&lCrystal Boost", null)
 
 				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
-//				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore)
-				.setSlot(Material.WATCH, 0 , 38, "&bWeapon Enchants", null)
+//				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore
 
 				.addEnchantGlint(true, 22);
 
 		baseGUI = inventoryBuilder.getInventory();
 		baseGUI.setItem(42, nbtRod.getItem());
+		baseGUI.setItem(38,     playerhead);
 	}
 
 	@Override
@@ -92,6 +100,10 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				return;
 			case "\u00a7d\u00a7lCrystal Boost":
 				System.out.println("Crystal Boost");
+		}
+
+		if (event.getCurrentItem().getType() == Material.SKULL_ITEM) {
+
 		}
 	}
 
