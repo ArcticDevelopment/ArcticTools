@@ -95,11 +95,11 @@ public class FishManager implements Listener {
 		nbtItem.setInteger(NBTTag.ROD_FISH.getRef(), totalFish);
 		event.getPlayer().setItemInHand(nbtItem.getItem());
 
-		FileConfiguration playerData = APlayerData.getPlayerData(player.getUniqueId());
+		FileConfiguration playerData = APlayerData.getPlayerData(player);
 		playerData.set("ign", player.getName());
 		playerData.set("crystals", playerData.getInt("crystals") + getCrystals(player, nbtItem.getItem()));
 		playerData.set("total-fish", playerData.getInt("total-fish") + getCrystals(player, nbtItem.getItem()));
-		APlayerData.savePlayerData(player.getUniqueId());
+		APlayerData.savePlayerData(player);
 
 	}
 }

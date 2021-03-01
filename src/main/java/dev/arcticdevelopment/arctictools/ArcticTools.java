@@ -2,6 +2,7 @@
 package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
+import dev.arcticdevelopment.arctictools.commands.FishTopCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
@@ -72,9 +73,9 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerCommands() {
         ABaseCommand apiCommand = new BaseCommand("arctictools");
-
         apiCommand.registerCommand(new GiveRodCommand("rod"));
-//        getCommand("printer").setExecutor(new PrinterCommand());
+
+        getCommand("fishtop").setExecutor(new FishTopCommand());
     }
 
     private void registerListeners() {

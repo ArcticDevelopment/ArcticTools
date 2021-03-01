@@ -41,7 +41,7 @@ public class LeaderboardManager {
 	public static List<Map.Entry<String, Integer>> getLeaderboard() {
 
 		List<Map.Entry<String, Integer>> sortedLeaderboard = new LinkedList<>(leaderboardMap.entrySet());
-		sortedLeaderboard.sort(Map.Entry.comparingByValue());
+		sortedLeaderboard.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
 		return sortedLeaderboard;
 	}
 }

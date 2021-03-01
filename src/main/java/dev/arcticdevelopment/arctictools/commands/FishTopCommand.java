@@ -1,12 +1,13 @@
 package dev.arcticdevelopment.arctictools.commands;
 
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
-import dev.kyro.arcticapi.commands.ASubCommand;
+import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,11 +20,28 @@ public class FishTopCommand implements CommandExecutor {
 			return false;
 		}
 		Player player = (Player) sender;
-
 		List<Map.Entry<String, Integer>> leaderboard = LeaderboardManager.getLeaderboard();
+		List<String> message = new ArrayList<>();
+		message.add("FishTop");
 
-		for(Map.Entry<String, Integer> entry : leaderboard) {
-			AO
+		int page = 1;
+		int pages = leaderboard.size() / 10 + 1;
+		try {
+			page = Math.min(Math.max(Integer.parseInt(args[0]), pages), 1);
+		} catch(Exception ignored) {}
+
+		for(int i = (page - 1) * 10; i < page * 10; i++) {
+
+			if(i >= leaderboard.size()) break;
+
+			Map.Entry<String, Integer> entry = leaderboard.get(i);
+
+			message.add(entry.getKey() + " - " + entry.getValue());
+		}
+
+		for(String line : message) {
+
+			AOutput.color(player, line);
 		}
 
 		return false;
