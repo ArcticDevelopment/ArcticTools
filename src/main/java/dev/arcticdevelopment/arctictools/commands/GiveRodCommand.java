@@ -49,6 +49,7 @@ public class GiveRodCommand extends ASubCommand {
 		nbtRod.setInteger(NBTTag.ROD_FISH.getRef(), 0);
 		nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
 		nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
+		nbtRod.setInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef(), 0);
 
 		RodEnchant.updateRod(nbtRod);
 

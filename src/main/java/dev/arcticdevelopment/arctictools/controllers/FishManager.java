@@ -32,17 +32,13 @@ public class FishManager implements Listener {
 
 	public static int getCrystals(Player player, ItemStack rod) {
 
-		int crystals = 1;
+		double crystals = (Math.random()*50) + 50;
 
-		while(true) {
+		NBTItem NBTRod = new NBTItem(rod);
 
-			if(Math.random() < 0.01) break;
-			crystals++;
-		}
+		crystals = Math.pow(1.1, NBTRod.getInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef())) * crystals;
 
-		AOutput.send(player, "You just received &b" + crystals + " crystals");
-
-		return crystals;
+		return (int) crystals;
 	}
 
 	public static ItemStack getDrop(Player player, ItemStack rod) {
@@ -107,10 +103,15 @@ public class FishManager implements Listener {
 		event.getPlayer().setItemInHand(nbtItem.getItem());
 
 		FileConfiguration playerData = APlayerData.getPlayerData(player);
+
+		int crystals = getCrystals(player, nbtItem.getItem());
+
 		playerData.set("ign", player.getName());
-		playerData.set("crystals", playerData.getInt("crystals") + getCrystals(player, nbtItem.getItem()));
+		playerData.set("crystals", playerData.getInt("crystals") + crystals);
 		playerData.set("total-fish", playerData.getInt("total-fish") + 1);
 		APlayerData.savePlayerData(player);
+
+		AOutput.send(player, "You just received &b" + crystals + " crystals");
 
 	}
 }

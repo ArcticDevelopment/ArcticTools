@@ -77,7 +77,6 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				System.out.println("luck");
 				return;
 			case "\u00a7c\u00a7lSoulbound":
-				System.out.println("soulbound");
 
 				nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) + 1);
 				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(1));
@@ -91,7 +90,6 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				System.out.println("size boost");
 				return;
 			case "\u00a7a\u00a7lTreasue Finder":
-				System.out.println("treasure");
 
 				nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef()) + 1);
 				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(0));
@@ -99,12 +97,12 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 				return;
 			case "\u00a7d\u00a7lCrystal Boost":
-				System.out.println("Crystal Boost");
+
+				nbtRod.setInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef()) + 1);
+				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(2));
+				player.getInventory().setItem(rodSlot, nbtRod.getItem());
 		}
 
-		if (event.getCurrentItem().getType() == Material.SKULL_ITEM) {
-
-		}
 	}
 
 	@Override
