@@ -38,5 +38,6 @@ public class PlayerRespawnListener implements Listener {
 
 			playerInventory.addItem(testNBTItem.getItem());
 		}
+		OnPlayerDeathListener.deathItems.remove(playerUUID);
 	}
 }

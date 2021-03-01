@@ -39,7 +39,7 @@ public class OnPlayerDeathListener implements Listener {
 
 			if (testNBTItem.hasKey(NBTTag.ROD_UUID.getRef())) {
 
-
+				System.out.println(testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()));
 				if(testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) > 0) {
 
 					itemList.add(testItem);
