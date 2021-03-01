@@ -5,6 +5,7 @@ import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
+import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Item;
@@ -31,7 +32,17 @@ public class FishManager implements Listener {
 
 	public static int getCrystals(Player player, ItemStack rod) {
 
-		return 1;
+		int crystals = 1;
+
+		while(true) {
+
+			if(Math.random() < 0.01) break;
+			crystals++;
+		}
+
+		AOutput.send(player, "You just received &b" + crystals + " crystals");
+
+		return crystals;
 	}
 
 	public static ItemStack getDrop(Player player, ItemStack rod) {
@@ -98,7 +109,7 @@ public class FishManager implements Listener {
 		FileConfiguration playerData = APlayerData.getPlayerData(player);
 		playerData.set("ign", player.getName());
 		playerData.set("crystals", playerData.getInt("crystals") + getCrystals(player, nbtItem.getItem()));
-		playerData.set("total-fish", playerData.getInt("total-fish") + getCrystals(player, nbtItem.getItem()));
+		playerData.set("total-fish", playerData.getInt("total-fish") + 1);
 		APlayerData.savePlayerData(player);
 
 	}
