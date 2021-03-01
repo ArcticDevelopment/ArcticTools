@@ -12,12 +12,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class LeftClickListener implements Listener {
 
-	@EventHandler(ignoreCancelled = false, priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOWEST)
 	public static void onLeftClick(PlayerInteractEvent event) {
 
-		if (!event.getAction().equals(Action.LEFT_CLICK_AIR) && !event.getAction().equals(Action.LEFT_CLICK_BLOCK))
-			return;
+//		TODO: When you right click with a rod it also left clicks???
+		System.out.println(event.getAction());
 
+		if (event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)
+			return;
 
 		Player player = event.getPlayer();
 

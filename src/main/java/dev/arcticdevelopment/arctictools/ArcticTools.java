@@ -74,6 +74,7 @@ public class ArcticTools extends JavaPlugin {
         ABaseCommand apiCommand = new BaseCommand("rod");
         apiCommand.registerCommand(new GiveRodCommand("rod"));
         apiCommand.registerCommand(new AdminCrystalsCommand("set"));
+        apiCommand.registerCommand(new AdminDropCommand("drop"));
 
         getCommand("fishtop").setExecutor(new FishTopCommand());
         getCommand("crystals").setExecutor(new CrystalsCommand());
