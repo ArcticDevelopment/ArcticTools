@@ -1,6 +1,8 @@
 package dev.arcticdevelopment.arctictools.listeners;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
+import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,7 +30,14 @@ public class PlayerRespawnListener implements Listener {
 		ArrayList<ItemStack> recoveredItems = OnPlayerDeathListener.deathItems.get(playerUUID);
 
 		for (ItemStack item: recoveredItems) {
-			playerInventory.addItem(item);
+
+			NBTItem testNBTItem = new NBTItem(item);
+
+			testNBTItem.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) - 1);
+			RodEnchant.updateEnchant(testNBTItem, RodEnchant.enchants.get(1));
+
+			playerInventory.addItem(testNBTItem.getItem());
 		}
+		OnPlayerDeathListener.deathItems.remove(playerUUID);
 	}
 }
