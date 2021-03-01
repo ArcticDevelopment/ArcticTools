@@ -7,6 +7,7 @@ import dev.kyro.arcticapi.commands.ASubCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -35,11 +36,13 @@ public class GiveRodCommand extends ASubCommand {
 		Player player = (Player) sender;
 		Inventory playerInventory = player.getInventory();
 		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
+		rodItemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 		ItemMeta rodMeta = rodItemStack.getItemMeta();
 
 		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&b&nFishing&r &7Rod"));
 		rodMeta.spigot().setUnbreakable(true);
 		rodMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		rodMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
 		rodItemStack.setItemMeta(rodMeta);
 

@@ -1,9 +1,7 @@
 
 package dev.arcticdevelopment.arctictools;
 
-import dev.arcticdevelopment.arctictools.commands.BaseCommand;
-import dev.arcticdevelopment.arctictools.commands.FishTopCommand;
-import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
+import dev.arcticdevelopment.arctictools.commands.*;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.CrystalBoostEnchant;
@@ -73,10 +71,12 @@ public class ArcticTools extends JavaPlugin {
     }
 
     private void registerCommands() {
-        ABaseCommand apiCommand = new BaseCommand("arctictools");
+        ABaseCommand apiCommand = new BaseCommand("rod");
         apiCommand.registerCommand(new GiveRodCommand("rod"));
+        apiCommand.registerCommand(new AdminCrystalsCommand("set"));
 
         getCommand("fishtop").setExecutor(new FishTopCommand());
+        getCommand("crystals").setExecutor(new CrystalsCommand());
     }
 
     private void registerListeners() {

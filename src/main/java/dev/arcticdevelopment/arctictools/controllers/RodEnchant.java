@@ -20,7 +20,10 @@ public abstract class RodEnchant implements Listener {
 
 	public abstract String getName();
 	public abstract NBTTag getNBTTag();
-	public abstract int getMaxLevel();
+	public abstract int getMaxLevel();;
+	public abstract int getSlot();
+	public abstract int getLevelCost(int level);
+	public abstract List<String> getLore(int level);
 
 	public static void registerEnchant(RodEnchant enchant) {
 
@@ -28,11 +31,20 @@ public abstract class RodEnchant implements Listener {
 		enchants.add(enchant);
 	}
 
+	public List<String> createDefaultLore(int level) {
+
+		ALoreBuilder loreBuilder = new ALoreBuilder();
+
+		loreBuilder.addLore("&b * &fProgress: " + level + "/" + getMaxLevel());
+		loreBuilder.addLore("&b * &fCost: " + getLevelCost(level) + "  crystals");
+
+		return loreBuilder.colorize().getLore();
+	}
+
 	public static void updateRod(NBTItem nbtRod) {
 
 		ItemMeta rodMeta = nbtRod.getItem().getItemMeta();
-		if(!rodMeta.hasLore()) rodMeta.setLore(new ArrayList<>());
-		ALoreBuilder loreBuilder = new ALoreBuilder(nbtRod.getItem());
+		ALoreBuilder loreBuilder = new ALoreBuilder();
 
 		loreBuilder.addLore("&f");
 		loreBuilder.addLore("&fSick harvester hoe pog champ &9/upgrade");
