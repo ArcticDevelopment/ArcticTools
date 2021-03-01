@@ -30,6 +30,9 @@ public abstract class RodEnchant implements Listener {
 
 	public static void updateEnchant(NBTItem nbtRod, RodEnchant enchant) {
 
+		System.out.println(nbtRod);
+		System.out.println(enchant);
+
 		int level = nbtRod.getInteger(enchant.getNBTTag().getRef());
 
 		ItemMeta rodMeta = nbtRod.getItem().getItemMeta();

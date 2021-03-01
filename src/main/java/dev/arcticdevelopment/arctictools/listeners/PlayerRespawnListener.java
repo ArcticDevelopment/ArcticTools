@@ -7,7 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class PlayerRespawnListener implements Listener {
@@ -18,14 +20,15 @@ public class PlayerRespawnListener implements Listener {
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 		UUID playerUUID = player.getUniqueId();
-		NBTItem recoveredRod;
+		PlayerInventory playerInventory = player.getInventory();
 
-		try {
-			recoveredRod =OnPlayerDeathListener.itemMap.get(playerUUID);
-			//TODO fix this
-			inventory.addItem(recoveredRod);
-		} catch(Exception e) {
-			System.out.println("Player did not have a rod on him");
+		if (!OnPlayerDeathListener.deathItems.containsKey(playerUUID)) {
+			return;
+		}
+		ArrayList<ItemStack> recoveredItems = OnPlayerDeathListener.deathItems.get(playerUUID);
+
+		for (ItemStack item: recoveredItems) {
+			playerInventory.addItem(item);
 		}
 	}
 }

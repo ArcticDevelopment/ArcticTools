@@ -36,7 +36,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 				.createBorder(Material.STAINED_GLASS_PANE, 7)
 
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 10, "&b&lLuck", null)
-				.setSlot(Material.ENCHANTED_BOOK, 0 , 13, "&c&lSoulbound Finder", null)
+				.setSlot(Material.ENCHANTED_BOOK, 0 , 13, "&c&lSoulbound", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 16, "&f&lLure", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 21, "&6&lSize Boost", null)
 				.setSlot(Material.ENCHANTED_BOOK, 0 , 23, "&a&lTreasue Finder", null)
