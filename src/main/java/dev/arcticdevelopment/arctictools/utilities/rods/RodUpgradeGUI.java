@@ -51,7 +51,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 //				.setSlot(Material.ENCHANTED_BOOK, 0 , 23, "&a&lTreasue Finder", null)
 //				.setSlot(Material.ENCHANTED_BOOK, 0 , 31, "&d&lCrystal Boost", null)
 
-				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
+				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bRod Upgrades", null)
 //				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore
 
 				.addEnchantGlint(true, 22);
