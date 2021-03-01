@@ -3,8 +3,10 @@ package dev.arcticdevelopment.arctictools.controllers;
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
+import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,6 +27,11 @@ public class FishManager implements Listener {
 
 		treasureDrops.add(new TreasureDrop(new ItemStack(Material.DIAMOND_BLOCK),1));
 		treasureDrops.add(new TreasureDrop(new ItemStack(Material.EMERALD_BLOCK),1));
+	}
+
+	public static int getCrystals(Player player, ItemStack rod) {
+
+		return 1;
 	}
 
 	public static ItemStack getDrop(Player player, ItemStack rod) {
@@ -88,6 +95,8 @@ public class FishManager implements Listener {
 		nbtItem.setInteger(NBTTag.ROD_FISH.getRef(), totalFish);
 		event.getPlayer().setItemInHand(nbtItem.getItem());
 
-		System.out.println(totalFish);
+		FileConfiguration playerData = APlayerData.getPlayerData(player.getUniqueId());
+		playerData.set("crystals", playerData.getInt("crystals") + getCrystals(player, nbtItem.getItem()));
+		APlayerData.savePlayerData(player.getUniqueId());
 	}
 }

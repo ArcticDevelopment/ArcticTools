@@ -28,6 +28,31 @@ public abstract class RodEnchant implements Listener {
 		enchants.add(enchant);
 	}
 
+	public static void updateRod(NBTItem nbtRod) {
+
+		ItemMeta rodMeta = nbtRod.getItem().getItemMeta();
+		if(!rodMeta.hasLore()) rodMeta.setLore(new ArrayList<>());
+		ALoreBuilder loreBuilder = new ALoreBuilder(nbtRod.getItem());
+
+		loreBuilder.addLore("&f");
+		loreBuilder.addLore("&fSick harvester hoe pog champ &9/upgrade");
+		loreBuilder.addLore("&f");
+		loreBuilder.addLore("&9Enchantments");
+		loreBuilder.addLore("&f");
+
+		for(RodEnchant enchant : enchants) {
+
+			int level = nbtRod.getInteger(enchant.getNBTTag().getRef());
+
+			if(level == 0) continue;
+
+			loreBuilder.addLore(enchant.getName() + " " + level);
+		}
+
+		rodMeta.setLore(loreBuilder.colorize().getLore());
+		nbtRod.getItem().setItemMeta(rodMeta);
+	}
+
 	public static void updateEnchant(NBTItem nbtRod, RodEnchant enchant) {
 
 		System.out.println(nbtRod);

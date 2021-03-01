@@ -1,6 +1,7 @@
 package dev.arcticdevelopment.arctictools.commands;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import org.bukkit.ChatColor;
@@ -8,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -37,16 +39,20 @@ public class GiveRodCommand extends ASubCommand {
 
 		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&b&nFishing&r &7Rod"));
 		rodMeta.spigot().setUnbreakable(true);
+		rodMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 
 		rodItemStack.setItemMeta(rodMeta);
 
 		String identifier = UUID.randomUUID().toString();
-		NBTItem nbtItem = new NBTItem(rodItemStack);
-		nbtItem.setString(NBTTag.ROD_UUID.getRef(), identifier);
-		nbtItem.setInteger(NBTTag.ROD_FISH.getRef(), 0);
-		nbtItem.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
-		nbtItem.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
-		playerInventory.addItem(nbtItem.getItem());
+		NBTItem nbtRod = new NBTItem(rodItemStack);
+		nbtRod.setString(NBTTag.ROD_UUID.getRef(), identifier);
+		nbtRod.setInteger(NBTTag.ROD_FISH.getRef(), 0);
+		nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
+		nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
+
+		RodEnchant.updateRod(nbtRod);
+
+		playerInventory.addItem(nbtRod.getItem());
 
 
 

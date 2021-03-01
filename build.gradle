@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.ArcticDevelopment:ArcticAPI:362db7d06f'
+    compile 'com.github.ArcticDevelopment:ArcticAPI:1.5.4'
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
     compile 'de.tr7zw:item-nbt-api-plugin:2.7.1'
