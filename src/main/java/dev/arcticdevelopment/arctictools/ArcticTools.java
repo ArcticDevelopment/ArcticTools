@@ -3,6 +3,7 @@ package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.BaseCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveRodCommand;
+import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.SoulboundEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
@@ -47,6 +48,8 @@ public class ArcticTools extends JavaPlugin {
         loadConfig();
 
         ArcticAPI.configInit(this, "prefix", "error-prefix");
+
+        LeaderboardManager.init();
 
         registerCommands();
         registerListeners();

@@ -15,12 +15,6 @@ public class FishTopGUI  extends AInventoryGUI {
 	public FishTopGUI() {
 
 		super("Fish Top", 3);
-
-		Map<UUID, FileConfiguration> playerData = APlayerData.getAllData();
-
-		for(Map.Entry<UUID, FileConfiguration> player : playerData.entrySet()) {
-			player.getValue()
-		}
 	}
 
 	@Override
