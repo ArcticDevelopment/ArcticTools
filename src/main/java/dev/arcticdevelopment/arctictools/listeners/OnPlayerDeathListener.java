@@ -3,6 +3,7 @@ package dev.arcticdevelopment.arctictools.listeners;
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -38,12 +39,8 @@ public class OnPlayerDeathListener implements Listener {
 
 			if (testNBTItem.hasKey(NBTTag.ROD_UUID.getRef())) {
 
-				System.out.println("has shit");
 
 				if(testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) > 0) {
-
-					testNBTItem.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) - 1);
-					RodEnchant.updateEnchant(testNBTItem, RodEnchant.enchants.get(1));
 
 					itemList.add(testItem);
 				}
