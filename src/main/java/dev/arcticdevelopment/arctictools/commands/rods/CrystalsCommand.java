@@ -1,26 +1,27 @@
 package dev.arcticdevelopment.arctictools.commands.rods;
 
-import dev.kyro.arcticapi.data.APlayerData;
-import dev.kyro.arcticapi.misc.AOutput;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import dev.kyro.arcticapi.commands.ABaseCommand;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class CrystalsCommand implements CommandExecutor {
+import java.util.List;
+
+public class CrystalsCommand extends ABaseCommand {
+
+	public CrystalsCommand(String baseExecutor) {
+		super(baseExecutor);
+	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public void executeBase(CommandSender sender, List<String> args) {
 
-		if(!(sender instanceof Player)) return false;
-		Player player = (Player) sender;
+		if (!(sender instanceof Player)) return;
+		createHelp().send((Player) sender);
+	}
 
-		FileConfiguration playerData = APlayerData.getPlayerData(player);
-		int crystals = playerData.getInt("crystals");
+	@Override
+	public void executeFail(CommandSender sender, List<String> args) {
 
-		AOutput.send(player, "You have: &b" + crystals + "&f crystals");
-
-		return false;
+		executeBase(sender,args);
 	}
 }

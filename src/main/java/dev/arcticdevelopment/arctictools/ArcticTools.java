@@ -85,14 +85,17 @@ public class ArcticTools extends JavaPlugin {
     }
 
     private void registerCommands() {
-        ABaseCommand apiCommand = new ToolsCommand("atools");
-        apiCommand.registerCommand(new AdminGiveCommand("give"));
-        apiCommand.registerCommand(new AdminCrystalsCommand("set"));
-        apiCommand.registerCommand(new AdminDropCommand("drop"));
-        apiCommand.registerCommand(new AdminReloadCommand("reload"));
+        ABaseCommand toolsCommand = new ToolsCommand("atools");
+        toolsCommand.registerCommand(new AdminGiveCommand("give"));
+        toolsCommand.registerCommand(new AdminCrystalsCommand("set"));
+        toolsCommand.registerCommand(new AdminDropCommand("drop"));
+        toolsCommand.registerCommand(new AdminReloadCommand("reload"));
+
+        ABaseCommand crystalsCommand = new CrystalsCommand("crystals");
+        crystalsCommand.registerCommands(new BalanceCommand("bal"));
+        crystalsCommand.registerCommands(new PayCommand("pay"));
 
         getCommand("fishtop").setExecutor(new FishTopCommand());
-        getCommand("crystals").setExecutor(new CrystalsCommand());
         getCommand("sellfish").setExecutor(new SellCommand());
     }
 
