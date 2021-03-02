@@ -44,8 +44,7 @@ public class ArcticTools extends JavaPlugin {
             WORLDGUARD = getServer().getPluginManager().getPlugin("WorldGuard");
 
             WorldGuardHook.registerFlag("arctic-fishing",false);
-        } catch(Exception e) {
-        }
+        } catch(Exception ignored) {}
 
     }
 
