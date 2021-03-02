@@ -4,10 +4,7 @@ package dev.arcticdevelopment.arctictools;
 import dev.arcticdevelopment.arctictools.commands.*;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
-import dev.arcticdevelopment.arctictools.enchants.rods.CrystalBoostEnchant;
-import dev.arcticdevelopment.arctictools.enchants.rods.LuckEnchant;
-import dev.arcticdevelopment.arctictools.enchants.rods.SoulboundEnchant;
-import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
+import dev.arcticdevelopment.arctictools.enchants.rods.*;
 import dev.arcticdevelopment.arctictools.inventories.LootEditor;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.controllers.FishManager;
@@ -203,5 +200,6 @@ public class ArcticTools extends JavaPlugin {
         RodEnchant.registerEnchant(new SoulboundEnchant());
         RodEnchant.registerEnchant(new CrystalBoostEnchant());
         RodEnchant.registerEnchant(new LuckEnchant());
+        RodEnchant.registerEnchant(new DoubleDropEnchant());
     }
 }

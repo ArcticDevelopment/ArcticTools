@@ -9,22 +9,22 @@ import java.util.List;
 public class DoubleDropEnchant extends RodEnchant {
 	@Override
 	public String getName() {
-		return ChatColor.GOLD + "Luck";
+		return ChatColor.GOLD + "Double Drop";
 	}
 
 	@Override
 	public NBTTag getNBTTag() {
-		return NBTTag.ROD_ENCHANT_LUCK;
+		return NBTTag.ROD_ENCHANT_DOUBLE_DROP;
 	}
 
 	@Override
 	public int getMaxLevel() {
-		return 25;
+		return 20;
 	}
 
 	@Override
 	public int getSlot() {
-		return 21;
+		return 11;
 	}
 
 	@Override

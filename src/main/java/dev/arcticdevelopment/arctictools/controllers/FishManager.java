@@ -1,13 +1,16 @@
 package dev.arcticdevelopment.arctictools.controllers;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.inventories.LootEditor;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.misc.AOutput;
+import dev.kyro.arcticapi.misc.ASound;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -17,6 +20,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +55,7 @@ public class FishManager implements Listener {
 
 		int treasureLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef());
 		int luckLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_LUCK.getRef());
+		int doubleDropLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_DOUBLE_DROP.getRef());
 //		For testing only
 		double treasureChance = treasureLevel * 1 + 100;
 
@@ -95,6 +100,23 @@ public class FishManager implements Listener {
 
 		drop = new ItemStack(fishDrop.getDrop());
 
+//		TODO: Change to final value
+		if(Math.random() * 20 * 1 < doubleDropLevel) {
+
+			int random3 = (int) (Math.random() * 8) + 3;
+			drop.setAmount(random3 + 1);
+
+			new BukkitRunnable() {
+				int count = 0;
+				@Override
+				public void run() {
+
+					ASound.play(player, Sound.ORB_PICKUP, (float) (0.7 + (count * 0.03)));
+
+					if(++count == random3) cancel();
+				}
+			}.runTaskTimer(ArcticTools.INSTANCE, 0L, 2L);
+		}
 		return drop;
 	}
 
