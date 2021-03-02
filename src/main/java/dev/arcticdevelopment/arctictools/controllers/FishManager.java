@@ -4,6 +4,7 @@ import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.inventories.LootEditor;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
+import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
@@ -49,6 +50,7 @@ public class FishManager implements Listener {
 		double random = Math.random() * 100;
 
 		int treasureLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef());
+		int luckLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_LUCK.getRef());
 //		For testing only
 		double treasureChance = treasureLevel * 1 + 100;
 
@@ -72,7 +74,8 @@ public class FishManager implements Listener {
 		}
 
 		int random2 = (int) (Math.random() * FishDrop.drops.size());
-		drop = new ItemStack(FishDrop.drops.get(random2).getDrop());
+		//drop = new ItemStack(FishDrop.drops.get(random2).getDrop());
+		FishDrop fishDrop = FishDrop.drops.get(random2);
 //		ItemMeta dropMeta = drop.getItemMeta();
 
 //		double multiplier = (double) Math.round(Math.random() * 10 * 100)/100;
@@ -82,6 +85,15 @@ public class FishManager implements Listener {
 //
 //		dropMeta.setLore(loreBuilder.getLore());
 //		drop.setItemMeta(dropMeta);
+
+		if (Math.random() * 25 <= luckLevel ) {
+
+			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();;
+
+			fishDrop = FishDrop.getRareDrop(rarity);
+		}
+
+		drop = new ItemStack(fishDrop.getDrop());
 
 		return drop;
 	}
