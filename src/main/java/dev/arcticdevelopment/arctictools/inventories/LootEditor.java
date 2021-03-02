@@ -1,8 +1,7 @@
 package dev.arcticdevelopment.arctictools.inventories;
 
-import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.utilities.Base64;
-import dev.kyro.arcticapi.data.AConfig;
+import dev.kyro.arcticapi.data.AData;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -54,7 +53,8 @@ public class LootEditor extends AInventoryGUI {
 	public static void updateDrops() {
 
 		drops.clear();
-		List<String> dropStrings = AConfig.getStringList("rod-loot");
+		AData fishingLoot = new AData("fishing-loot");
+		List<String> dropStrings = fishingLoot.getConfiguration().getStringList("rod-loot");
 
 		for(String drop : dropStrings) {
 			try {
@@ -72,14 +72,15 @@ public class LootEditor extends AInventoryGUI {
 	@Override
 	public void onClose(InventoryCloseEvent event) {
 
-		AConfig.set("rod-loot", new ArrayList<>());
+		AData fishingLoot = new AData("fishing-loot");
+		fishingLoot.getConfiguration().set("rod-loot", new ArrayList<>());
 
 		for(ItemStack drop : event.getInventory().getContents()) {
 
 			if(drop == null) continue;
-			AConfig.addToList("rod-loot", Base64.itemTo64(drop));
+			fishingLoot.addToList("rod-loot", Base64.itemTo64(drop));
 		}
-		ArcticTools.INSTANCE.saveConfig();
+		fishingLoot.saveDataFile();
 	}
 
 	@Override
