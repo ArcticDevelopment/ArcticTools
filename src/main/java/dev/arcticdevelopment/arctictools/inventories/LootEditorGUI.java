@@ -21,6 +21,7 @@ public class LootEditorGUI extends AInventoryGUI {
 	public static List<ItemStack> drops = new ArrayList<>();
 
 	public LootEditorGUI() {
+//		TODO: Change size and switch .add method to .set (to preserve stack amount)
 		super("Loot Editor", 1);
 	}
 
