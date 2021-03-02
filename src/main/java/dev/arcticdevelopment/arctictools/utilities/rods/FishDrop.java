@@ -30,20 +30,23 @@ public class FishDrop {
 		return rarity;
 	}
 
-	public static FishDrop getRareDrop(FishDropRarity rarity)  {
+	public static FishDrop getRareDrop(FishDropRarity rarity) {
 
 		List<FishDrop> copy = new ArrayList<>(drops);
 		Collections.shuffle(copy);
-		for (FishDrop fishDrop: copy) {
-			FishDropRarity fishDropRarity = fishDrop.getRarity().getNextRarity();
+
+		for (FishDrop testDrop: copy) {
+
+			FishDropRarity fishDropRarity = testDrop.getRarity();
+
 			if (rarity == fishDropRarity) {
-				System.out.println("og rarity" + rarity.toString());
-				System.out.println("new rarity" + fishDropRarity.toString());
-				return fishDrop;
+
+				return testDrop;
 			}
 		}
+
 		System.out.println("could not find target rarity");
-		return copy.get(1);
+		return null;
 
 
 

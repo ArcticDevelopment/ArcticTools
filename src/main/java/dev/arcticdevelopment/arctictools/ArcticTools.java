@@ -5,6 +5,7 @@ import dev.arcticdevelopment.arctictools.commands.*;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.CrystalBoostEnchant;
+import dev.arcticdevelopment.arctictools.enchants.rods.LuckEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.SoulboundEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
@@ -198,5 +199,6 @@ public class ArcticTools extends JavaPlugin {
         RodEnchant.registerEnchant(new TreasureFinderEnchant());
         RodEnchant.registerEnchant(new SoulboundEnchant());
         RodEnchant.registerEnchant(new CrystalBoostEnchant());
+        RodEnchant.registerEnchant(new LuckEnchant());
     }
 }

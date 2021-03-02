@@ -84,15 +84,15 @@ public class FishManager implements Listener {
 //		dropMeta.setLore(loreBuilder.getLore());
 //		drop.setItemMeta(dropMeta);
 
-		if (((Math.random()*25)+25) <= treasureLevel ) {
-			System.out.println("upgraded rarity");
-			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();
-			fishDrop =  FishDrop.getRareDrop(rarity);
+		if (Math.random() * 25 <= luckLevel ) {
 
+			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();;
+
+			fishDrop = FishDrop.getRareDrop(rarity);
 		}
 
-
 		drop = new ItemStack(fishDrop.getDrop());
+
 		return drop;
 	}
 
