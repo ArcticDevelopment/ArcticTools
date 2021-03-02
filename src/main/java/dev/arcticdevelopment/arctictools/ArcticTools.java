@@ -191,7 +191,6 @@ public class ArcticTools extends JavaPlugin {
         itemMeta14.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&8[&r&k|||&r&b&nDivine&r&k|||&8]&r &7Shard"));
         item14.setItemMeta(itemMeta14);
         new FishDrop(item14, FishDropRarity.DIVINE);
-
     }
 
     private void registerEnchants() {
