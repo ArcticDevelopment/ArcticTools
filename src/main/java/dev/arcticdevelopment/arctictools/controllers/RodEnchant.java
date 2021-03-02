@@ -21,6 +21,7 @@ public abstract class RodEnchant implements Listener {
 	public static final ArrayList<RodEnchant> enchants = new ArrayList<>();
 
 	public abstract String getName();
+	public abstract String getDescription();
 	public abstract NBTTag getNBTTag();
 	public abstract int getMaxLevel();;
 	public abstract int getSlot();
@@ -37,6 +38,8 @@ public abstract class RodEnchant implements Listener {
 
 		ALoreBuilder loreBuilder = new ALoreBuilder();
 
+		loreBuilder.addLore(getDescription());
+		loreBuilder.addLore("");
 		loreBuilder.addLore("&f[" +
 				AUtil.createProgressBar("|", ChatColor.AQUA, ChatColor.GRAY, 20, (double) level/getMaxLevel())
 				+ "&f]");

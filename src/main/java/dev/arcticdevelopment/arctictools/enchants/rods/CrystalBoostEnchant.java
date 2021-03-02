@@ -13,6 +13,11 @@ public class CrystalBoostEnchant extends RodEnchant {
 	}
 
 	@Override
+	public String getDescription() {
+		return "&baejwfoiawioefjoiawejfioj";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_CRYSTALBOOST;
 	}
