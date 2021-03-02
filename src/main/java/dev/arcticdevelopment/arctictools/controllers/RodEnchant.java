@@ -64,7 +64,7 @@ public abstract class RodEnchant implements Listener {
 
 			if(level == 0) continue;
 
-			loreBuilder.addLore(enchant.getName() + " " + level);
+			loreBuilder.addLore(enchant.getName() + " " + AUtil.toRoman(level));
 		}
 
 		rodMeta.setLore(loreBuilder.colorize().getLore());
