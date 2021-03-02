@@ -4,7 +4,7 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.ChatColor;
 
-import java.util.List;
+import java.util.*;
 
 public class CrystalBoostEnchant extends RodEnchant {
 	@Override
@@ -13,8 +13,10 @@ public class CrystalBoostEnchant extends RodEnchant {
 	}
 
 	@Override
-	public String getDescription() {
-		return " &7Chance to get additional crystals";
+	public List<String> getDescription(int level) {
+		List<String> description = new ArrayList<>();
+		description.add("&7Chance to get additional crystals");
+		return description;
 	}
 
 	@Override

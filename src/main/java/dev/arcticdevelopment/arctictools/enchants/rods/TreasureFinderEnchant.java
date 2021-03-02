@@ -4,19 +4,20 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
 public class TreasureFinderEnchant extends RodEnchant {
-
 	@Override
 	public String getName() {
 		return ChatColor.AQUA + "Treasure Finder";
 	}
 
 	@Override
-	public String getDescription() {
-		return " &7Chance to find rare treasure";
+	public List<String> getDescription(int level) {
+		List<String> description = new ArrayList<>();
+		description.add("&7Chance to find rare treasure");
+		return description;
 	}
 
 	@Override

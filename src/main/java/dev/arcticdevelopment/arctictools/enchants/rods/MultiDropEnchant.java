@@ -4,6 +4,7 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultiDropEnchant extends RodEnchant {
@@ -13,8 +14,10 @@ public class MultiDropEnchant extends RodEnchant {
 	}
 
 	@Override
-	public String getDescription() {
-		return " &7Chance to get multiple fish";
+	public List<String> getDescription(int level) {
+		List<String> description = new ArrayList<>();
+		description.add("&7Chance to get multiple fish");
+		return description;
 	}
 
 	@Override

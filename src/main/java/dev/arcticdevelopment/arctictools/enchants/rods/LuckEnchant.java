@@ -4,6 +4,7 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LuckEnchant extends RodEnchant {
@@ -13,8 +14,10 @@ public class LuckEnchant extends RodEnchant {
 	}
 
 	@Override
-	public String getDescription() {
-		return " &7Increases chance to fish higher tier fish";
+	public List<String> getDescription(int level) {
+		List<String> description = new ArrayList<>();
+		description.add("&7Increases chance to fish higher tier fish");
+		return description;
 	}
 
 	@Override

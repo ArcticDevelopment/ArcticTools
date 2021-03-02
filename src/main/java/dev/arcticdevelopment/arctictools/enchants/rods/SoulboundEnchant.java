@@ -4,16 +4,42 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import org.bukkit.ChatColor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SoulboundEnchant extends RodEnchant {
+	@Override
+	public String getName() {
+		return ChatColor.RED + "Soulbound";
+	}
 
 	@Override
-	public String getName() { return ChatColor.RED + "Soulbound"; }
+	public List<String> getDescription(int level) {
+		List<String> description = new ArrayList<>();
 
-	@Override
-	public String getDescription() {
-		return " &7Rod is kept on death, however, one level of Soulbound is removed";
+		int chance = 0;
+		switch(level) {
+			case 1:
+				chance = 50;
+				break;
+			case 2:
+				chance = 70;
+				break;
+			case 3:
+				chance = 85;
+				break;
+			case 4:
+				chance = 95;
+				break;
+			case 5:
+				chance = 100;
+				break;
+		}
+
+		description.add("&7Chance to keep rod on death,");
+		description.add("&7but removes this enchant");
+		description.add("&7Current Chance: &b" + chance);
+		return description;
 	}
 
 	@Override
