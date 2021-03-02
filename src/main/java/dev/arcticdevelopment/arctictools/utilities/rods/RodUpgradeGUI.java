@@ -1,8 +1,10 @@
 package dev.arcticdevelopment.arctictools.utilities.rods;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.kyro.arcticapi.builders.AInventoryBuilder;
+import dev.kyro.arcticapi.builders.ALoreBuilder;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
 import dev.kyro.arcticapi.misc.AOutput;
@@ -29,31 +31,27 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 		nbtRod = new NBTItem(player.getItemInHand());
 		rodSlot = player.getInventory().getHeldItemSlot();
+		FileConfiguration playerData = APlayerData.getPlayerData(player);
+		String leaderboardPos = LeaderboardManager.getPosition(player) != -1 ? LeaderboardManager.getPosition(player) + "" : "Haven't Fished";
 
 		ItemStack itemStack = player.getItemInHand();
 		ItemMeta itemMeta = itemStack.getItemMeta();
 		String displayName = itemMeta.getDisplayName();
 		ArrayList<String> lore = (ArrayList<String>) itemMeta.getLore();
 
-		ItemStack playerhead = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
-		SkullMeta playerheadmeta = (SkullMeta) playerhead.getItemMeta();
-		playerheadmeta.setOwner(player.getName());
-		playerheadmeta.setDisplayName(player.getDisplayName());
-		playerhead.setItemMeta(playerheadmeta);
+		ItemStack playerHead = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+		SkullMeta playerHeadMeta = (SkullMeta) playerHead.getItemMeta();
+		playerHeadMeta.setOwner(player.getName());
+		playerHeadMeta.setDisplayName(player.getDisplayName());
+		ALoreBuilder loreBuilder = new ALoreBuilder(playerHead)
+				.addLore("&b * &fCrystals: &3" + playerData.getInt("crystals"))
+				.addLore("&b * &fTotal Fish: &3" + playerData.getInt("total-fish"))
+				.addLore("&b * &fPosition: &3#" + leaderboardPos);
+		playerHeadMeta.setLore(loreBuilder.colorize().getLore());
+		playerHead.setItemMeta(playerHeadMeta);
 
 		AInventoryBuilder inventoryBuilder = new AInventoryBuilder(null, 54, "Rod Upgrades")
-				.createBorder(Material.STAINED_GLASS_PANE, 7)
-
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 10, "&b&lLuck", null)
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 13, "&c&lSoulbound", null)
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 16, "&f&lLure", null)
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 21, "&6&lSize Boost", null)
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 23, "&a&lTreasue Finder", null)
-//				.setSlot(Material.ENCHANTED_BOOK, 0 , 31, "&d&lCrystal Boost", null)
-
 				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
-//				.setSlot(Material.FISHING_ROD, 0 , 42, displayName, lore
-
 				.addEnchantGlint(true, 22);
 
 		for(RodEnchant enchant : RodEnchant.enchants) {
@@ -65,7 +63,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 		baseGUI = inventoryBuilder.getInventory();
 		baseGUI.setItem(42, nbtRod.getItem());
-		baseGUI.setItem(38,     playerhead);
+		baseGUI.setItem(38, playerHead);
 	}
 
 	@Override

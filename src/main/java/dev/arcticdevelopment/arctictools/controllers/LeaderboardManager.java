@@ -3,6 +3,7 @@ package dev.arcticdevelopment.arctictools.controllers;
 import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.kyro.arcticapi.data.APlayerData;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
@@ -19,7 +20,7 @@ public class LeaderboardManager {
 
 				updateLeaderboard();
 			}
-		}.runTaskTimer(ArcticTools.INSTANCE, 0L, 20L);
+		}.runTaskTimer(ArcticTools.INSTANCE, 0L, 1L);
 	}
 
 	private static void updateLeaderboard() {
@@ -43,5 +44,19 @@ public class LeaderboardManager {
 		List<Map.Entry<String, Integer>> sortedLeaderboard = new LinkedList<>(leaderboardMap.entrySet());
 		sortedLeaderboard.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
 		return sortedLeaderboard;
+	}
+
+	public static int getPosition(Player player) {
+
+		List<Map.Entry<String, Integer>> sortedLeaderboard = getLeaderboard();
+
+		for(Map.Entry<String, Integer> entry : sortedLeaderboard) {
+
+			if(!player.getDisplayName().equals(entry.getKey())) continue;
+
+			return sortedLeaderboard.indexOf(entry) + 1;
+		}
+
+		return -1;
 	}
 }
