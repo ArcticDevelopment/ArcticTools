@@ -29,14 +29,14 @@ public class PlayerRespawnListener implements Listener {
 		}
 		ArrayList<ItemStack> recoveredItems = OnPlayerDeathListener.deathItems.get(playerUUID);
 
-		for (ItemStack item: recoveredItems) {
+		for (ItemStack item : recoveredItems) {
 
-			NBTItem testNBTItem = new NBTItem(item);
+			NBTItem nbtRod = new NBTItem(item);
 
-			testNBTItem.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) - 1);
-			RodEnchant.updateEnchant(testNBTItem, RodEnchant.enchants.get(1));
+			nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) - 1);
+			RodEnchant.updateRod(nbtRod);
 
-			playerInventory.addItem(testNBTItem.getItem());
+			playerInventory.addItem(nbtRod.getItem());
 		}
 		OnPlayerDeathListener.deathItems.remove(playerUUID);
 	}
