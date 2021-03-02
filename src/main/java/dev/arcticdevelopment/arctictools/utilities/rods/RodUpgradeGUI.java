@@ -27,7 +27,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 		super("Upgrade Harvester Hoe", 6);
 
-		nbtRod = new NBTItem(player.getItemInHand());;
+		nbtRod = new NBTItem(player.getItemInHand());
 		rodSlot = player.getInventory().getHeldItemSlot();
 
 		ItemStack itemStack = player.getItemInHand();
@@ -60,7 +60,7 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 			int level = nbtRod.getInteger(enchant.getNBTTag().getRef());
 
-			inventoryBuilder.setSlot(Material.ENCHANTED_BOOK, 0, enchant.getSlot(), enchant.getName(), (ArrayList<String>) enchant.getLore(level));
+			inventoryBuilder.setSlot(Material.ENCHANTED_BOOK, 0, enchant.getSlot(), enchant.getName(), enchant.getLore(level));
 		}
 
 		baseGUI = inventoryBuilder.getInventory();

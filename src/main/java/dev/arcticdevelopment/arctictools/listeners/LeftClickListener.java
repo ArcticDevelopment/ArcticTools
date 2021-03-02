@@ -1,7 +1,10 @@
 package dev.arcticdevelopment.arctictools.listeners;
 
+import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.RodUpgradeGUI;
 import dev.kyro.arcticapi.misc.ASound;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,8 +25,9 @@ public class LeftClickListener implements Listener {
 			return;
 
 		Player player = event.getPlayer();
-
-		if (!player.isSneaking()) return;
+		if (!player.isSneaking() || player.getItemInHand() == null || player.getItemInHand().getType() == Material.AIR) return;
+		NBTItem nbtItem = new NBTItem(player.getItemInHand());
+		if(!nbtItem.hasKey(NBTTag.ROD_UUID.getRef())) return;
 
 		event.setCancelled(true);
 

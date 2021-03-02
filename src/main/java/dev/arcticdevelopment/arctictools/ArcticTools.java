@@ -7,6 +7,7 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.CrystalBoostEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.SoulboundEnchant;
 import dev.arcticdevelopment.arctictools.enchants.rods.TreasureFinderEnchant;
+import dev.arcticdevelopment.arctictools.inventories.LootEditor;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
 import dev.arcticdevelopment.arctictools.controllers.FishManager;
 import dev.arcticdevelopment.arctictools.listeners.OnPlayerDeathListener;
@@ -50,6 +51,7 @@ public class ArcticTools extends JavaPlugin {
         ArcticAPI.configInit(this, "prefix", "error-prefix");
 
         LeaderboardManager.init();
+        LootEditor.updateDrops();
 
         registerCommands();
         registerListeners();

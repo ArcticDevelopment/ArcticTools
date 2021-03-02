@@ -1,10 +1,10 @@
 package dev.arcticdevelopment.arctictools.controllers;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.inventories.LootEditor;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.data.APlayerData;
-import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -50,23 +50,25 @@ public class FishManager implements Listener {
 
 		int treasureLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef());
 //		For testing only
-		double treasureChance = treasureLevel * 1;
+		double treasureChance = treasureLevel * 1 + 100;
 
 		if(random < treasureChance) {
 
-			double totalWeight = 0;
-			for(TreasureDrop treasureDrop : treasureDrops) {
+//			double totalWeight = 0;
+//			for(TreasureDrop treasureDrop : treasureDrops) {
+//
+//				totalWeight += treasureDrop.getWeight();
+//			}
+//
+//			double countWeight = 0;
+//			double randomTreasure = Math.random() * totalWeight;
+//			for(TreasureDrop treasureDrop : treasureDrops) {
+//
+//				countWeight += treasureDrop.getWeight();
+//				if(countWeight >= randomTreasure) return treasureDrop.getItemStack();
+//			}
 
-				totalWeight += treasureDrop.getWeight();
-			}
-
-			double countWeight = 0;
-			double randomTreasure = Math.random() * totalWeight;
-			for(TreasureDrop treasureDrop : treasureDrops) {
-
-				countWeight += treasureDrop.getWeight();
-				if(countWeight >= randomTreasure) return treasureDrop.getItemStack();
-			}
+			if(LootEditor.drops.size() != 0) return LootEditor.drops.get((int) (Math.random() * LootEditor.drops.size()));
 		}
 
 		int random2 = (int) (Math.random() * FishDrop.drops.size());
@@ -90,8 +92,9 @@ public class FishManager implements Listener {
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 
-		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
-				|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
+		if (!event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
+//		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
+//				|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
 
 		ItemStack drop = getDrop(player, player.getItemInHand());
 

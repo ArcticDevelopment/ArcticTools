@@ -4,7 +4,9 @@ import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.builders.ALoreBuilder;
+import dev.kyro.arcticapi.misc.AUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -35,8 +37,10 @@ public abstract class RodEnchant implements Listener {
 
 		ALoreBuilder loreBuilder = new ALoreBuilder();
 
-		loreBuilder.addLore("&b * &fProgress: " + level + "/" + getMaxLevel());
-		loreBuilder.addLore("&b * &fCost: " + getLevelCost(level) + "  crystals");
+		loreBuilder.addLore(AUtil.createProgressBar("|", ChatColor.AQUA, ChatColor.GRAY, 20, (double) level/getMaxLevel()));
+		loreBuilder.addLore("");
+		loreBuilder.addLore("&b * &fProgress: &3" + level + "&7/&3" + getMaxLevel());
+		loreBuilder.addLore("&b * &fCost (Crystals): &3" + getLevelCost(level));
 
 		return loreBuilder.colorize().getLore();
 	}

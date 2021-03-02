@@ -19,6 +19,8 @@ import java.util.List;
 
 public class LootEditor extends AInventoryGUI {
 
+	public static List<ItemStack> drops = new ArrayList<>();
+
 	public LootEditor() {
 		super("Loot Editor", 1);
 	}
@@ -49,6 +51,18 @@ public class LootEditor extends AInventoryGUI {
 		}
 	}
 
+	public static void updateDrops() {
+
+		drops.clear();
+		List<String> dropStrings = AConfig.getStringList("rod-loot");
+
+		for(String drop : dropStrings) {
+			try {
+				drops.add(Base64.itemFrom64(drop));
+			} catch(IOException ignored) {}
+		}
+	}
+
 	@Override
 	public void onOpen(InventoryOpenEvent event) {
 
@@ -72,12 +86,10 @@ public class LootEditor extends AInventoryGUI {
 	public Inventory getInventory() {
 
 		Inventory inventory = super.getInventory();
-		List<String> drops = AConfig.getStringList("rod-loot");
 
-		for(String drop : drops) {
-			try {
-				inventory.addItem(Base64.itemFrom64(drop));
-			} catch(IOException ignored) {}
+		updateDrops();
+		for(ItemStack drop : drops) {
+			inventory.addItem(drop);
 		}
 
 		return inventory;
