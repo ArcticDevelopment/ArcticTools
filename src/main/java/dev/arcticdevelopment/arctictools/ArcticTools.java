@@ -201,5 +201,6 @@ public class ArcticTools extends JavaPlugin {
         RodEnchant.registerEnchant(new CrystalBoostEnchant());
         RodEnchant.registerEnchant(new LuckEnchant());
         RodEnchant.registerEnchant(new DoubleDropEnchant());
+        RodEnchant.registerEnchant(new LureEnchant());
     }
 }
