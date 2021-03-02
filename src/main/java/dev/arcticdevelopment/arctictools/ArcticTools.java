@@ -2,6 +2,7 @@
 package dev.arcticdevelopment.arctictools;
 
 import dev.arcticdevelopment.arctictools.commands.AdminGiveCommand;
+import dev.arcticdevelopment.arctictools.commands.AdminReloadCommand;
 import dev.arcticdevelopment.arctictools.commands.ToolsCommand;
 import dev.arcticdevelopment.arctictools.commands.rods.*;
 import dev.arcticdevelopment.arctictools.controllers.FishManager;
@@ -15,6 +16,7 @@ import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
+import dev.kyro.arcticapi.data.AData;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
@@ -32,6 +34,8 @@ public class ArcticTools extends JavaPlugin {
     public static ArcticTools INSTANCE;
     public static Plugin WORLDGUARD;
     public static Economy VAULT = null;
+
+    public static AData CONFIG;
 
     @Override
     public void onLoad() {
@@ -54,6 +58,7 @@ public class ArcticTools extends JavaPlugin {
         loadConfig();
 
         ArcticAPI.configInit(this, "prefix", "error-prefix");
+        CONFIG = new AData("config");
 
         LeaderboardManager.init();
         LootEditorGUI.updateDrops();
@@ -88,6 +93,7 @@ public class ArcticTools extends JavaPlugin {
         apiCommand.registerCommand(new AdminGiveCommand("give"));
         apiCommand.registerCommand(new AdminCrystalsCommand("set"));
         apiCommand.registerCommand(new AdminDropCommand("drop"));
+        apiCommand.registerCommand(new AdminReloadCommand("reload"));
 
         getCommand("fishtop").setExecutor(new FishTopCommand());
         getCommand("crystals").setExecutor(new CrystalsCommand());

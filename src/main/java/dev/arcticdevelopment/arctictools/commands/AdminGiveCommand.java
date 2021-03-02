@@ -29,10 +29,6 @@ public class AdminGiveCommand extends ASubCommand {
 
 		if (!(sender instanceof Player)) return;
 
-		int leftLimit = 48;
-		int rightLimit = 122;
-		int targetStringLength = 25;
-
 		Player player = (Player) sender;
 		Inventory playerInventory = player.getInventory();
 		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
@@ -49,26 +45,8 @@ public class AdminGiveCommand extends ASubCommand {
 		String identifier = UUID.randomUUID().toString();
 		NBTItem nbtRod = new NBTItem(rodItemStack);
 		nbtRod.setString(NBTTag.ROD_UUID.getRef(), identifier);
-//		nbtRod.setInteger(NBTTag.ROD_FISH.getRef(), 0);
-//		nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), 0);
-//		nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
-//		nbtRod.setInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef(), 0);
 
 		RodEnchant.updateRod(nbtRod);
-
 		playerInventory.addItem(nbtRod.getItem());
-
-
-
-
-//		if (args.size() == 0) {
-//
-//
-//		} else if (args.size() == 1){
-//
-//		} else {
-
-		//AOutput.send(player, "You have unused args");
-
 	}
 }
