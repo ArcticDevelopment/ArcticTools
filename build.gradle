@@ -16,11 +16,10 @@ repositories {
     maven { url 'https://maven.enginehub.org/repo/' }
     maven { url 'https://repo.codemc.org/repository/maven-public/' }
     maven { url 'repo.citizensnpcs.co' }
-
 }
 
 dependencies {
-    compile 'com.github.ArcticDevelopment:ArcticAPI:93c250db86'
+    compile 'com.github.ArcticDevelopment:ArcticAPI:d82fa7e8f3'
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
     compile 'de.tr7zw:item-nbt-api-plugin:2.7.1'
