@@ -13,21 +13,27 @@ public class FishDrop {
 
 	public ItemStack drop;
 	public FishDropRarity rarity;
+	public int sellPrice;
 
 	public ItemStack getDrop() {
 		return drop;
 	}
 
-	public FishDrop(ItemStack drop, FishDropRarity rarity) {
+	public FishDrop(ItemStack drop, FishDropRarity rarity, int sellPrice) {
 
 		this.rarity = rarity;
 		this.drop = drop;
+		this.sellPrice = sellPrice;
 		drops.add(this);
 	}
 
 	public FishDropRarity getRarity() {
 
 		return rarity;
+	}
+
+	public int getSellPrice() {
+		return sellPrice;
 	}
 
 	public static FishDrop getRareDrop(FishDropRarity rarity) {
