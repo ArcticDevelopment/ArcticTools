@@ -8,12 +8,15 @@ import dev.kyro.arcticapi.builders.ALoreBuilder;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
 import dev.kyro.arcticapi.misc.AOutput;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -47,8 +50,9 @@ public class RodUpgradeGUI extends AInventoryGUI {
 		playerHead.setItemMeta(playerHeadMeta);
 
 		AInventoryBuilder inventoryBuilder = new AInventoryBuilder(null, 54, "Rod Upgrades")
-				.setSlot(Material.PRISMARINE_SHARD, 0 , 22, "&bWeapon Enchants", null)
-				.addEnchantGlint(true, 22);
+				.createBorder(Material.STAINED_GLASS_PANE, 3)
+				.setSlots(Material.STAINED_GLASS_PANE, 3, 10, 12, 14, 16, 19, 20, 24, 25, 28, 30, 32, 34)
+				.setSlots(Material.STAINED_GLASS_PANE, 11, 29, 33, 37, 39, 40, 41, 43, 47, 51);
 
 		for(RodEnchant enchant : RodEnchant.enchants) {
 
@@ -58,6 +62,15 @@ public class RodUpgradeGUI extends AInventoryGUI {
 		}
 
 		baseGUI = inventoryBuilder.getInventory();
+
+		ItemStack itemStack1 = new ItemStack(Material.PRISMARINE_SHARD);
+		itemStack1.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		ItemMeta itemMeta1 = itemStack1.getItemMeta();
+		itemMeta1.setDisplayName(ChatColor.AQUA + "Rod Enchants");
+		itemMeta1.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		itemStack1.setItemMeta(itemMeta1);
+		baseGUI.setItem(22, itemStack1);
+
 		baseGUI.setItem(42, nbtRod.getItem());
 		baseGUI.setItem(38, playerHead);
 	}
