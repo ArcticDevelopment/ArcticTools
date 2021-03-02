@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arctictools.commands;
+package dev.arcticdevelopment.arctictools.commands.rods;
 
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.data.APlayerData;

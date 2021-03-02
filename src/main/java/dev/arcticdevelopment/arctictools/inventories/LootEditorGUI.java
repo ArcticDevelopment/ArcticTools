@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LootEditor extends AInventoryGUI {
+public class LootEditorGUI extends AInventoryGUI {
 
 	public static List<ItemStack> drops = new ArrayList<>();
 
-	public LootEditor() {
+	public LootEditorGUI() {
 		super("Loot Editor", 1);
 	}
 

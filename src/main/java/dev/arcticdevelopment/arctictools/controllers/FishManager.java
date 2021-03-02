@@ -2,10 +2,10 @@ package dev.arcticdevelopment.arctictools.controllers;
 
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.ArcticTools;
-import dev.arcticdevelopment.arctictools.inventories.LootEditor;
+import dev.arcticdevelopment.arctictools.inventories.LootEditorGUI;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
-import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
+import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.misc.AOutput;
 import dev.kyro.arcticapi.misc.ASound;
@@ -59,7 +59,7 @@ public class FishManager implements Listener {
 
 		int treasureLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef());
 		int luckLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_LUCK.getRef());
-		int doubleDropLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_DOUBLE_DROP.getRef());
+		int multiDropLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_MULTI_DROP.getRef());
 //		For testing only
 		double treasureChance = treasureLevel * 1 + 100;
 
@@ -79,21 +79,11 @@ public class FishManager implements Listener {
 //				if(countWeight >= randomTreasure) return treasureDrop.getItemStack();
 //			}
 
-			if(LootEditor.drops.size() != 0) return LootEditor.drops.get((int) (Math.random() * LootEditor.drops.size()));
+			if(LootEditorGUI.drops.size() != 0) return LootEditorGUI.drops.get((int) (Math.random() * LootEditorGUI.drops.size()));
 		}
 
 		int random2 = (int) (Math.random() * FishDrop.drops.size());
-		//drop = new ItemStack(FishDrop.drops.get(random2).getDrop());
 		FishDrop fishDrop = FishDrop.drops.get(random2);
-//		ItemMeta dropMeta = drop.getItemMeta();
-
-//		double multiplier = (double) Math.round(Math.random() * 10 * 100)/100;
-//
-//		ALoreBuilder loreBuilder = new ALoreBuilder();
-//		loreBuilder.addLore(multiplier + "");
-//
-//		dropMeta.setLore(loreBuilder.getLore());
-//		drop.setItemMeta(dropMeta);
 
 		if (Math.random() * 25 <= luckLevel ) {
 
@@ -105,7 +95,7 @@ public class FishManager implements Listener {
 		drop = new ItemStack(fishDrop.getDrop());
 
 //		TODO: Change to final value
-		if(Math.random() * 20 * 1 < doubleDropLevel) {
+		if(Math.random() * 20 * 1 < multiDropLevel) {
 
 			int random3 = (int) (Math.random() * 8) + 3;
 			drop.setAmount(random3 + 1);

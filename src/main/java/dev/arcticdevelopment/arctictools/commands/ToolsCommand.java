@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class BaseCommand extends ABaseCommand {
+public class ToolsCommand extends ABaseCommand {
 
-	public BaseCommand(String baseExecutor) {
+	public ToolsCommand(String baseExecutor) {
 
 
 		super(baseExecutor);

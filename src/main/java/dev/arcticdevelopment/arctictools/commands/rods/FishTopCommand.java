@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arctictools.commands;
+package dev.arcticdevelopment.arctictools.commands.rods;
 
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.kyro.arcticapi.ArcticAPI;

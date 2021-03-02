@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arctictools.utilities.rods;
+package dev.arcticdevelopment.arctictools.inventories;
 
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;

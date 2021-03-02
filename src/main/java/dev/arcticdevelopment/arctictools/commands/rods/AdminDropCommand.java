@@ -1,6 +1,6 @@
-package dev.arcticdevelopment.arctictools.commands;
+package dev.arcticdevelopment.arctictools.commands.rods;
 
-import dev.arcticdevelopment.arctictools.inventories.LootEditor;
+import dev.arcticdevelopment.arctictools.inventories.LootEditorGUI;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.data.APlayerData;
 import org.bukkit.command.CommandSender;
@@ -23,6 +23,6 @@ public class AdminDropCommand extends ASubCommand {
 		Player player = (Player) sender;
 		FileConfiguration playerData = APlayerData.getPlayerData(player);
 
-		player.openInventory(new LootEditor().getInventory());
+		player.openInventory(new LootEditorGUI().getInventory());
 	}
 }

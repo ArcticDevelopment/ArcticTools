@@ -2,7 +2,7 @@ package dev.arcticdevelopment.arctictools.listeners;
 
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
-import dev.arcticdevelopment.arctictools.utilities.rods.RodUpgradeGUI;
+import dev.arcticdevelopment.arctictools.inventories.RodUpgradeGUI;
 import dev.kyro.arcticapi.misc.ASound;
 import org.bukkit.Material;
 import org.bukkit.Sound;

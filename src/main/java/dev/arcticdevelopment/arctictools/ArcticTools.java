@@ -1,17 +1,18 @@
 
 package dev.arcticdevelopment.arctictools;
 
-import dev.arcticdevelopment.arctictools.commands.*;
+import dev.arcticdevelopment.arctictools.commands.AdminGiveCommand;
+import dev.arcticdevelopment.arctictools.commands.ToolsCommand;
+import dev.arcticdevelopment.arctictools.commands.rods.*;
+import dev.arcticdevelopment.arctictools.controllers.FishManager;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
+import dev.arcticdevelopment.arctictools.controllers.SoulboundManager;
 import dev.arcticdevelopment.arctictools.enchants.rods.*;
-import dev.arcticdevelopment.arctictools.inventories.LootEditor;
+import dev.arcticdevelopment.arctictools.inventories.LootEditorGUI;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
-import dev.arcticdevelopment.arctictools.controllers.FishManager;
-import dev.arcticdevelopment.arctictools.listeners.OnPlayerDeathListener;
-import dev.arcticdevelopment.arctictools.listeners.PlayerRespawnListener;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
-import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
+import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
@@ -55,7 +56,7 @@ public class ArcticTools extends JavaPlugin {
         ArcticAPI.configInit(this, "prefix", "error-prefix");
 
         LeaderboardManager.init();
-        LootEditor.updateDrops();
+        LootEditorGUI.updateDrops();
 
         registerCommands();
         registerListeners();
@@ -83,8 +84,8 @@ public class ArcticTools extends JavaPlugin {
     }
 
     private void registerCommands() {
-        ABaseCommand apiCommand = new BaseCommand("rod");
-        apiCommand.registerCommand(new GiveRodCommand("rod"));
+        ABaseCommand apiCommand = new ToolsCommand("atools");
+        apiCommand.registerCommand(new AdminGiveCommand("give"));
         apiCommand.registerCommand(new AdminCrystalsCommand("set"));
         apiCommand.registerCommand(new AdminDropCommand("drop"));
 
@@ -97,8 +98,29 @@ public class ArcticTools extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new FishManager(), this);
         getServer().getPluginManager().registerEvents(new LeftClickListener(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerDeathListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerRespawnListener(), this);
+        getServer().getPluginManager().registerEvents(new SoulboundManager(), this);
+    }
+
+    private void registerEnchants() {
+
+        RodEnchant.registerEnchant(new TreasureFinderEnchant());
+        RodEnchant.registerEnchant(new SoulboundEnchant());
+        RodEnchant.registerEnchant(new CrystalBoostEnchant());
+        RodEnchant.registerEnchant(new LuckEnchant());
+        RodEnchant.registerEnchant(new MultiDropEnchant());
+        RodEnchant.registerEnchant(new LureEnchant());
+    }
+
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        VAULT = rsp.getProvider();
+        return VAULT != null;
     }
 
     private void registerFish() {
@@ -204,27 +226,5 @@ public class ArcticTools extends JavaPlugin {
         itemMeta14.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&8[&r&k|||&r&b&nDivine&r&k|||&8]&r &7Shard"));
         item14.setItemMeta(itemMeta14);
         new FishDrop(item14, FishDropRarity.DIVINE,1000);
-    }
-
-    private void registerEnchants() {
-
-        RodEnchant.registerEnchant(new TreasureFinderEnchant());
-        RodEnchant.registerEnchant(new SoulboundEnchant());
-        RodEnchant.registerEnchant(new CrystalBoostEnchant());
-        RodEnchant.registerEnchant(new LuckEnchant());
-        RodEnchant.registerEnchant(new DoubleDropEnchant());
-        RodEnchant.registerEnchant(new LureEnchant());
-    }
-
-    private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null) {
-            return false;
-        }
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-            return false;
-        }
-        VAULT = rsp.getProvider();
-        return VAULT != null;
     }
 }

@@ -6,10 +6,10 @@ import org.bukkit.ChatColor;
 
 import java.util.List;
 
-public class DoubleDropEnchant extends RodEnchant {
+public class MultiDropEnchant extends RodEnchant {
 	@Override
 	public String getName() {
-		return ChatColor.YELLOW + "Double Drop";
+		return ChatColor.YELLOW + "Multi Drop";
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class DoubleDropEnchant extends RodEnchant {
 
 	@Override
 	public NBTTag getNBTTag() {
-		return NBTTag.ROD_ENCHANT_DOUBLE_DROP;
+		return NBTTag.ROD_ENCHANT_MULTI_DROP;
 	}
 
 	@Override

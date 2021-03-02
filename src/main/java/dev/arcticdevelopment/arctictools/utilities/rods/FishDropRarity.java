@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arctictools.utilities.rods.enums;
+package dev.arcticdevelopment.arctictools.utilities.rods;
 
 public enum FishDropRarity {
 

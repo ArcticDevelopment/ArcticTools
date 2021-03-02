@@ -1,6 +1,5 @@
 package dev.arcticdevelopment.arctictools.utilities.rods;
 
-import dev.arcticdevelopment.arctictools.utilities.rods.enums.FishDropRarity;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
