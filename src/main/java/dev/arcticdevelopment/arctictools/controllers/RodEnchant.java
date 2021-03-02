@@ -37,7 +37,9 @@ public abstract class RodEnchant implements Listener {
 
 		ALoreBuilder loreBuilder = new ALoreBuilder();
 
-		loreBuilder.addLore(AUtil.createProgressBar("|", ChatColor.AQUA, ChatColor.GRAY, 20, (double) level/getMaxLevel()));
+		loreBuilder.addLore("&f[" +
+				AUtil.createProgressBar("|", ChatColor.AQUA, ChatColor.GRAY, 20, (double) level/getMaxLevel())
+				+ "&f]");
 		loreBuilder.addLore("");
 		loreBuilder.addLore("&b * &fProgress: &3" + level + "&7/&3" + getMaxLevel());
 		loreBuilder.addLore("&b * &fCost (Crystals): &3" + getLevelCost(level));
