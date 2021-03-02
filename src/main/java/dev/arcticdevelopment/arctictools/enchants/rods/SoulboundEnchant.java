@@ -12,6 +12,11 @@ public class SoulboundEnchant extends RodEnchant {
 	public String getName() { return ChatColor.RED + "Soulbound"; }
 
 	@Override
+	public String getDescription() {
+		return " &7Rod is kept on death, however, one level of Soulbound is removed";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_SOULBOUND;
 	}

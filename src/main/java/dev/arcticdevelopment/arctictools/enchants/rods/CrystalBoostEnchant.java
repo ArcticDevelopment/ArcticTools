@@ -14,7 +14,7 @@ public class CrystalBoostEnchant extends RodEnchant {
 
 	@Override
 	public String getDescription() {
-		return "&baejwfoiawioefjoiawejfioj";
+		return " &7Chance to get additional crystals";
 	}
 
 	@Override

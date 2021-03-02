@@ -13,6 +13,11 @@ public class LureEnchant extends RodEnchant {
 	}
 
 	@Override
+	public String getDescription() {
+		return " &7Increases bite chance";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_LURE;
 	}

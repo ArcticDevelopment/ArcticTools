@@ -13,6 +13,11 @@ public class DoubleDropEnchant extends RodEnchant {
 	}
 
 	@Override
+	public String getDescription() {
+		return " &7Chance to get multiple fish";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_DOUBLE_DROP;
 	}

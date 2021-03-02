@@ -15,6 +15,11 @@ public class TreasureFinderEnchant extends RodEnchant {
 	}
 
 	@Override
+	public String getDescription() {
+		return " &7Chance to find rare treasure";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_TREASURE;
 	}

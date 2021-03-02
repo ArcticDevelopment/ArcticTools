@@ -13,6 +13,11 @@ public class LuckEnchant extends RodEnchant {
 	}
 
 	@Override
+	public String getDescription() {
+		return " &7Increases chance to fish higher tier fish";
+	}
+
+	@Override
 	public NBTTag getNBTTag() {
 		return NBTTag.ROD_ENCHANT_LUCK;
 	}
