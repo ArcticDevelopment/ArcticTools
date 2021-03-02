@@ -38,12 +38,31 @@ public class SoulboundManager implements Listener {
 
 			if (testNBTItem.hasKey(NBTTag.ROD_UUID.getRef())) {
 
-				System.out.println(testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()));
-				if(testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) > 0) {
+				int level = testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef());
+				int chanceToKeep = 0;
+				System.out.println(level);
 
+				switch(level) {
+					case 1:
+						chanceToKeep = 50;
+						break;
+					case 2:
+						chanceToKeep = 70;
+						break;
+					case 3:
+						chanceToKeep = 85;
+						break;
+					case 4:
+						chanceToKeep = 95;
+						break;
+					case 5:
+						chanceToKeep = 100;
+
+				}
+				int random = (int) (Math.random()*100);
+				if (random < chanceToKeep) {
 					itemList.add(testItem);
 				}
-
 			}
 		}
 
@@ -71,7 +90,7 @@ public class SoulboundManager implements Listener {
 
 			NBTItem nbtRod = new NBTItem(item);
 
-			nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) - 1);
+			nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), 0);
 			RodEnchant.updateRod(nbtRod);
 
 			playerInventory.addItem(nbtRod.getItem());

@@ -10,7 +10,6 @@ public class ToolsCommand extends ABaseCommand {
 
 	public ToolsCommand(String baseExecutor) {
 
-
 		super(baseExecutor);
 	}
 

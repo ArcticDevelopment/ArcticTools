@@ -5,7 +5,7 @@ main: dev.arcticdevelopment.arctictools.ArcticTools
 description: Template plugin
 softdepend: [ WorldGuard ]
 commands:
-  rod:
+  atools:
   fishtop:
   crystals:
   sellfish:
