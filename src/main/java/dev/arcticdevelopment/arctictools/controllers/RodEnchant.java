@@ -71,40 +71,6 @@ public abstract class RodEnchant implements Listener {
 		nbtRod.getItem().setItemMeta(rodMeta);
 	}
 
-	public static void updateEnchant(NBTItem nbtRod, RodEnchant enchant) {
-
-		int level = nbtRod.getInteger(enchant.getNBTTag().getRef());
-
-		ItemMeta rodMeta = nbtRod.getItem().getItemMeta();
-		if(!rodMeta.hasLore()) rodMeta.setLore(new ArrayList<>());
-		List<String> lore = rodMeta.getLore();
-
-		boolean onHoe = false;
-		for(String line : lore) {
-			if(line.contains(enchant.getName())) onHoe = true;
-		}
-
-		if(!onHoe) {
-
-			ALoreBuilder rodLore = new ALoreBuilder(nbtRod.getItem())
-					.addLore(enchant.getName() + " " + level);
-
-			rodMeta.setLore(rodLore.getLore());
-		} else {
-
-			for(int i = 0; i < lore.size(); i++) {
-
-				if(lore.get(i).contains(enchant.getName())) {
-
-					lore.set(i, enchant.getName() + " " + level);
-				}
-			}
-			rodMeta.setLore(lore);
-		}
-
-		nbtRod.getItem().setItemMeta(rodMeta);
-	}
-
 	public static HashMap<RodEnchant, Integer> getActiveEnchants(Player player) {
 		HashMap<RodEnchant, Integer> activeEnchants = new HashMap<>();
 
