@@ -7,7 +7,7 @@ public enum NBTTag {
 	ROD_ENCHANT_TREASURE("arod-spawners"),
 	ROD_ENCHANT_SOULBOUND("arod-soulbound"),
 	ROD_ENCHANT_CRYSTALBOOST("arod-crystalboost"),
-	ROD_ENCHANT_LUCK("arod-crystalboost");
+	ROD_ENCHANT_LUCK("arod-luck");
 
 	private final String ref;
 

@@ -18,8 +18,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.ArrayList;
-
 public class RodUpgradeGUI extends AInventoryGUI {
 
 	private NBTItem nbtRod;
@@ -36,8 +34,6 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 		ItemStack itemStack = player.getItemInHand();
 		ItemMeta itemMeta = itemStack.getItemMeta();
-		String displayName = itemMeta.getDisplayName();
-		ArrayList<String> lore = (ArrayList<String>) itemMeta.getLore();
 
 		ItemStack playerHead = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
 		SkullMeta playerHeadMeta = (SkullMeta) playerHead.getItemMeta();
