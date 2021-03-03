@@ -7,6 +7,7 @@ import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.data.APlayerData;
+import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import dev.kyro.arcticapi.misc.AOutput;
 import dev.kyro.arcticapi.misc.ASound;
 import net.minecraft.server.v1_8_R3.EntityFishingHook;
@@ -134,8 +135,13 @@ public class FishManager implements Listener {
 		Inventory inventory = player.getInventory();
 
 		if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
-//		if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
-//				|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
+
+
+		if (ArcticTools.CONFIG.getConfiguration().getBoolean("enable-worldguard-hook")) {
+			if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
+					|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
+		}
+
 
 		ItemStack drop = getDrop(player, player.getItemInHand());
 

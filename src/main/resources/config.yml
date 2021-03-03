@@ -2,5 +2,6 @@ prefix: "&7[&b&lA&7]&f "
 error-prefix: "&8[&c&lA&8]&f "
 fish-multiplier: 10000000
 
+enable-worldguard-hook: true
 messages:
   no-permission: 'You do not have permission to use this command'
