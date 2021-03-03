@@ -38,9 +38,9 @@ public class SellManager {
 				}
 			}
 		}
-		AOutput.send(player, "Sold &d" + counter + "&f fish for &d$" + total + "&f.");
+		AOutput.send(player, "Sold &b" + counter + "&f fish for &b$" + total + "&f.");
 
 		System.out.println(total);
-		ArcticTools.VAULT.depositPlayer(player,total);
+		ArcticTools.VAULT.depositPlayer(player, total);
 	}
 }

@@ -155,8 +155,7 @@ public class FishManager implements Listener {
 		playerData.set("total-fish", playerData.getInt("total-fish") + 1);
 		APlayerData.savePlayerData(player);
 
-		AOutput.send(player, "You just received &b" + crystals + " crystals");
-
+		AOutput.send(player, "You just received &b" + crystals + "&f crystals");
 	}
 
 	private void setBiteTime(FishHook hook, int time) {

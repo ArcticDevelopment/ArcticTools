@@ -1,6 +1,7 @@
 package dev.arcticdevelopment.arctictools.commands;
 
 import dev.arcticdevelopment.arctictools.ArcticTools;
+import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.misc.AOutput;
@@ -27,6 +28,10 @@ public class AdminReloadCommand extends ASubCommand {
 		ArcticTools.CONFIG.reloadDataFile();
 		ArcticAPI.prefix = ArcticTools.CONFIG.getConfiguration().getString("prefix");
 		ArcticAPI.errorPrefix = ArcticTools.CONFIG.getConfiguration().getString("error-prefix");
+
+		FishDrop.drops.clear();
+		ArcticTools.INSTANCE.registerFish();
+
 		AOutput.send(player, "Reloaded config in &b" + (System.currentTimeMillis() - start) + "ms");
 	}
 }
