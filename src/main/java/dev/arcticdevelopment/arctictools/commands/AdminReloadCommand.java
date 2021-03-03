@@ -23,6 +23,11 @@ public class AdminReloadCommand extends ASubCommand {
 		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 
+		if (!player.hasPermission("arctic.tools.admin.reload")) {
+			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
+			return;
+		}
+
 		long start = System.currentTimeMillis();
 
 		ArcticTools.CONFIG.reloadDataFile();

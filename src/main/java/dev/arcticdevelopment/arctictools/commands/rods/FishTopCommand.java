@@ -1,5 +1,6 @@
 package dev.arcticdevelopment.arctictools.commands.rods;
 
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.misc.AOutput;
@@ -38,6 +39,11 @@ public class FishTopCommand implements CommandExecutor {
 		Player player = (Player) sender;
 		List<Map.Entry<String, Integer>> leaderboard = LeaderboardManager.getLeaderboard();
 		List<String> message = new ArrayList<>();
+
+		if(!player.hasPermission("arctic.tools.player.fishtop")) {
+			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
+			return false;
+		}
 
 		System.out.println(player.getDisplayName());
 

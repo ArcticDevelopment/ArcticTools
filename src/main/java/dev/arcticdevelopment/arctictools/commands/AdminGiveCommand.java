@@ -1,9 +1,11 @@
 package dev.arcticdevelopment.arctictools.commands;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.commands.ASubCommand;
+import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -34,6 +36,11 @@ public class AdminGiveCommand extends ASubCommand {
 		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
 		rodItemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 		ItemMeta rodMeta = rodItemStack.getItemMeta();
+
+		if (!player.hasPermission("arctic.tools.admin.give")) {
+			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
+			return;
+		}
 
 		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&b&nFishing&r &7Rod"));
 		rodMeta.spigot().setUnbreakable(true);

@@ -1,5 +1,6 @@
 package dev.arcticdevelopment.arctictools.commands.rods;
 
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.misc.AOutput;
@@ -22,6 +23,11 @@ public class PayCommand extends ASubCommand {
 
 		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
+
+		if(!player.hasPermission("arctic.tools.player.crystals.pay")) {
+			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
+			return;
+		}
 
 		if(args.size() < 2) {
 
