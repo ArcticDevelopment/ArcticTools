@@ -108,12 +108,12 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerEnchants() {
 
-        RodEnchant.registerEnchant(new TreasureFinderEnchant());
-        RodEnchant.registerEnchant(new SoulboundEnchant());
-        RodEnchant.registerEnchant(new CrystalBoostEnchant());
         RodEnchant.registerEnchant(new LuckEnchant());
-        RodEnchant.registerEnchant(new MultiDropEnchant());
         RodEnchant.registerEnchant(new LureEnchant());
+        RodEnchant.registerEnchant(new SoulboundEnchant());
+        RodEnchant.registerEnchant(new MultiDropEnchant());
+        RodEnchant.registerEnchant(new CrystalBoostEnchant());
+        RodEnchant.registerEnchant(new TreasureFinderEnchant());
     }
 
     private boolean setupEconomy() {
