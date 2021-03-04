@@ -62,7 +62,7 @@ public class FishManager implements Listener {
 		int luckLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_LUCK.getRef());
 		int multiDropLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_MULTI_DROP.getRef());
 //		For testing only
-		double treasureChance = treasureLevel * 1 + 100;
+		double treasureChance = (double) treasureLevel / 2;
 
 		if(random < treasureChance) {
 
@@ -86,7 +86,7 @@ public class FishManager implements Listener {
 		int random2 = (int) (Math.random() * FishDrop.drops.size());
 		FishDrop fishDrop = FishDrop.drops.get(random2);
 
-		if (Math.random() * 25 <= luckLevel ) {
+		if (Math.random() * 20 <= luckLevel ) {
 
 			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();;
 
@@ -96,7 +96,7 @@ public class FishManager implements Listener {
 		drop = new ItemStack(fishDrop.getDrop());
 
 //		TODO: Change to final value
-		if(Math.random() * 20 * 1 < multiDropLevel) {
+		if(Math.random() * 80 < multiDropLevel) {
 
 			int random3 = (int) (Math.random() * 8) + 3;
 			drop.setAmount(random3 + 1);
@@ -122,8 +122,6 @@ public class FishManager implements Listener {
 
 		NBTItem nbtRod = new NBTItem(event.getPlayer().getItemInHand());
 		int lureLevel = nbtRod.getInteger(NBTTag.ROD_ENCHANT_LURE.getRef());
-
-		System.out.println("FISHING");
 
 		setBiteTime(event.getHook(), (int) (Math.pow(0.9, lureLevel) * 350));
 	}

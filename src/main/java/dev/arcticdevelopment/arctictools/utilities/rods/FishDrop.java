@@ -49,12 +49,7 @@ public class FishDrop {
 				return testDrop;
 			}
 		}
-
-		System.out.println("could not find target rarity");
 		return null;
-
-
-
 	}
 
 }

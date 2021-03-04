@@ -40,7 +40,6 @@ public class SoulboundManager implements Listener {
 
 				int level = testNBTItem.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef());
 				int chanceToKeep = 0;
-				System.out.println(level);
 
 				switch(level) {
 					case 1:

@@ -45,8 +45,6 @@ public class FishTopCommand implements CommandExecutor {
 			return false;
 		}
 
-		System.out.println(player.getDisplayName());
-
 		int page = 1;
 		int pages = leaderboard.size() / 10 + 1;
 		try {

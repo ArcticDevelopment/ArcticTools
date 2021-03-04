@@ -27,7 +27,7 @@ public class LuckEnchant extends RodEnchant {
 
 	@Override
 	public int getMaxLevel() {
-		return 25;
+		return 20;
 	}
 
 	@Override

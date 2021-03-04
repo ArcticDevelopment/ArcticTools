@@ -122,38 +122,6 @@ public class RodUpgradeGUI extends AInventoryGUI {
 
 			AOutput.send(player, "Spent " + cost + " crystals to upgrade " + enchant.getName() + "&f to level " + (level + 1));
 		}
-
-//		switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
-//			case "\u00a7b\u00a7lLuck":
-//				System.out.println("luck");
-//				return;
-//			case "\u00a7c\u00a7lSoulbound":
-//
-//				nbtRod.setInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_SOULBOUND.getRef()) + 1);
-//				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(1));
-//				player.getInventory().setItem(rodSlot, nbtRod.getItem());
-//
-//				return;
-//			case "\u00a7f\u00a7lLure":
-//				System.out.println("lure");
-//				return;
-//			case "\u00a76\u00a7lSize Boost":
-//				System.out.println("size boost");
-//				return;
-//			case "\u00a7a\u00a7lTreasue Finder":
-//
-//				nbtRod.setInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_TREASURE.getRef()) + 1);
-//				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(0));
-//				player.getInventory().setItem(rodSlot, nbtRod.getItem());
-//
-//				return;
-//			case "\u00a7d\u00a7lCrystal Boost":
-//
-//				nbtRod.setInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef(), nbtRod.getInteger(NBTTag.ROD_ENCHANT_CRYSTALBOOST.getRef()) + 1);
-//				RodEnchant.updateEnchant(nbtRod, RodEnchant.enchants.get(2));
-//				player.getInventory().setItem(rodSlot, nbtRod.getItem());
-//		}
-
 	}
 
 	@Override

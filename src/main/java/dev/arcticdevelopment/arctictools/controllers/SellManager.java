@@ -40,7 +40,6 @@ public class SellManager {
 		}
 		AOutput.send(player, "Sold &b" + counter + "&f fish for &b$" + total + "&f.");
 
-		System.out.println(total);
 		ArcticTools.VAULT.depositPlayer(player, total);
 	}
 }
