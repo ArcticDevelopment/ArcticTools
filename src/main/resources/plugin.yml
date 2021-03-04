@@ -9,20 +9,20 @@ commands:
   fishtop:
   crystals:
   sellfish:
-permissions:
-  arctic.tools.admin.give:
-    [permission to give fishing rod]
-  arctic.tools.admin.crystals:
-    [permission to set player crystals]
-  arctic.tools.admin.reload:
-    [permission to reload the plugin]
-  arctic.tools.admin.drops:
-    [permission to modify treasure drops]
-  arctic.tools.player.crystals.bal:
-    [permission to view crystal balance]
-  arctic.tools.player.crystals.pay:
-    [permission to pay crystals]
-  arctic.tools.player.fishtop:
-    [permission to view fishtop]
-  arctic.tools.player.sell:
-    [permission to use /sellfish command]
+#permissions:
+#  arctic.tools.admin.give:
+#    [permission to give fishing rod]
+#  arctic.tools.admin.crystals:
+#    [permission to set player crystals]
+#  arctic.tools.admin.reload:
+#    [permission to reload the plugin]
+#  arctic.tools.admin.drops:
+#    [permission to modify treasure drops]
+#  arctic.tools.player.crystals.bal:
+#    [permission to view crystal balance]
+#  arctic.tools.player.crystals.pay:
+#    [permission to pay crystals]
+#  arctic.tools.player.fishtop:
+#    [permission to view fishtop]
+#  arctic.tools.player.sell:
+#    [permission to use /sellfish command]
