@@ -27,7 +27,7 @@ public class TreasureFinderEnchant extends RodEnchant {
 
 	@Override
 	public int getMaxLevel() {
-		return 10;
+		return 20;
 	}
 
 	@Override
