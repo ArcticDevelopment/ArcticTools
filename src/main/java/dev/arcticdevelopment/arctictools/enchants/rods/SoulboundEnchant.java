@@ -38,7 +38,7 @@ public class SoulboundEnchant extends RodEnchant {
 
 		description.add("&7Chance to keep rod on death,");
 		description.add("&7but removes this enchant");
-		description.add("&7Current Chance: &b" + chance);
+		description.add("&7Current Chance: &b" + chance + "%");
 		return description;
 	}
 
