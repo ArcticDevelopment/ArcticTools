@@ -45,21 +45,27 @@ public class AdminCrystalsCommand extends ASubCommand {
 		String arg = args.get(0);
 		String receiver = args.get(1);
 		int amount = Integer.parseInt(args.get(2));
-		Player receiverPlayer;
+		Player receiverPlayer = null;
 
 		for(Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
 			if (onlinePlayer.getName().equals(receiver)) {
 				receiverPlayer = onlinePlayer;
-				APlayerData.getPlayerData(receiverPlayer);
+
 			}
 		}
 
-				switch(arg) {
+		if (receiverPlayer == null) {
+			return;
+		}
+
+		FileConfiguration receiverData = APlayerData.getPlayerData(receiverPlayer);
+
+		switch(arg) {
 
 			case "set":
 
-				playerData.set("crystals", amount);
-				APlayerData.savePlayerData(player);
+				receiverData.set("crystals", amount);
+				APlayerData.savePlayerData(receiverPlayer);
 				AOutput.send(player, "Set crystals to &b" + playerData.getInt("crystals"));
 				return;
 
@@ -70,8 +76,8 @@ public class AdminCrystalsCommand extends ASubCommand {
 					return;
 				}
 
-				playerData.set("crystals", playerData.getInt("crystals") + amount );
-				APlayerData.savePlayerData(player);
+				receiverData.set("crystals", receiverData.getInt("crystals") + amount );
+				APlayerData.savePlayerData(receiverPlayer);
 				AOutput.send(player, "Added &b" + amount + "&f crystals");
 				return;
 
@@ -82,8 +88,8 @@ public class AdminCrystalsCommand extends ASubCommand {
 					return;
 				}
 
-				playerData.set("crystals", playerData.getInt("crystals") - amount );
-				APlayerData.savePlayerData(player);
+				receiverData.set("crystals", receiverData.getInt("crystals") - amount );
+				APlayerData.savePlayerData(receiverPlayer);
 				AOutput.send(player, "Removed &b" + amount  + "&f crystals");
 				return;
 
