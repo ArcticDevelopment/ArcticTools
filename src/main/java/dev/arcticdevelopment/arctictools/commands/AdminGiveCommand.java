@@ -42,7 +42,7 @@ public class AdminGiveCommand extends ASubCommand {
 			return;
 		}
 
-		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&b&nFishing&r &7Rod"));
+		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',ArcticTools.CONFIG.getString("rod-name")));
 		rodMeta.spigot().setUnbreakable(true);
 		rodMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		rodMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

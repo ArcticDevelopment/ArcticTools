@@ -5,7 +5,6 @@ import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -34,7 +33,7 @@ public class AdminCrystalsCommand extends ASubCommand {
 		if (args.size() < 2) return;
 
 		try {
-			Integer.parseInt(args.get(1));
+			Integer.parseInt(args.get(2));
 
 		} catch(Exception ignored) {
 
