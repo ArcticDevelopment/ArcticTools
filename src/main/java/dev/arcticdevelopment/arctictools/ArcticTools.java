@@ -92,8 +92,8 @@ public class ArcticTools extends JavaPlugin {
         toolsCommand.registerCommand(new AdminReloadCommand("reload"));
 
         ABaseCommand crystalsCommand = new CrystalsCommand("crystals");
-        crystalsCommand.registerCommands(new BalanceCommand("bal"));
-        crystalsCommand.registerCommands(new PayCommand("pay"));
+        crystalsCommand.registerCommand(new BalanceCommand("bal"));
+        crystalsCommand.registerCommand(new PayCommand("pay"));
 
         getCommand("fishtop").setExecutor(new FishTopCommand());
         getCommand("sellfish").setExecutor(new SellCommand());
