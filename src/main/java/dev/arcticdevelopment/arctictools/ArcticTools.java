@@ -87,7 +87,7 @@ public class ArcticTools extends JavaPlugin {
     private void registerCommands() {
         ABaseCommand toolsCommand = new ToolsCommand("atools");
         toolsCommand.registerCommand(new AdminGiveCommand("give"));
-        toolsCommand.registerCommand(new AdminCrystalsCommand("set"));
+        toolsCommand.registerCommand(new AdminCrystalsCommand("crystals"));
         toolsCommand.registerCommand(new AdminDropCommand("drop"));
         toolsCommand.registerCommand(new AdminReloadCommand("reload"));
 
