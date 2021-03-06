@@ -55,19 +55,27 @@ public abstract class RodEnchant implements Listener {
 		ItemMeta rodMeta = nbtRod.getItem().getItemMeta();
 		ALoreBuilder loreBuilder = new ALoreBuilder();
 
-		loreBuilder.addLore("&f");
-		loreBuilder.addLore("&fSick harvester hoe pog champ &9/upgrade");
-		loreBuilder.addLore("&f");
-		loreBuilder.addLore("&9Enchantments");
-		loreBuilder.addLore("&f");
+		rodMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', ArcticTools.CONFIG.getString("rod-name")));
 
+		loreBuilder.addLore("&f");
+		loreBuilder.addLore(ArcticTools.CONFIG.getStringList("rod-description"));
+//		loreBuilder.addLore("&f");
+
+		boolean hasEnchants = false;
 		for(RodEnchant enchant : enchants) {
 
 			int level = nbtRod.getInteger(enchant.getNBTTag().getRef());
 
 			if(level == 0) continue;
 
-			loreBuilder.addLore(enchant.getName() + " " + AUtil.toRoman(level));
+			if(!hasEnchants) {
+
+				hasEnchants = true;
+				loreBuilder.addLore("&f");
+				loreBuilder.addLore("&9Enchantments");
+			}
+
+			loreBuilder.addLore("&7 * " + enchant.getName() + " " + AUtil.toRoman(level));
 		}
 
 		rodMeta.setLore(loreBuilder.colorize().getLore());

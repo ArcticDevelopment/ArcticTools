@@ -2,6 +2,12 @@ prefix: "&7[&b&lA&7]&f "
 error-prefix: "&8[&c&lA&8]&f "
 fish-multiplier: 10000000
 
+rod-name: "&b&lEnhanced &7Fishing Rod"
+rod-description:
+  - "&7Cast this &benhanced rod &7in the &3darkzone &7for &7treasures"
+  - "&bShift &bleft&7-&bclick &7while holding to upgrade"
+
 enable-worldguard-hook: true
+
 messages:
   no-permission: 'You do not have permission to use this command'
