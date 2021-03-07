@@ -17,7 +17,7 @@ public class SellCommand implements CommandExecutor {
 		}
 		Player player = ((Player) commandSender).getPlayer();
 
-		if (player.hasPermission("arctic.tools.player.sell")) {
+		if (!player.hasPermission("arctic.tools.player.sell")) {
 			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
 			return false;
 		}
