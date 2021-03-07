@@ -8,9 +8,8 @@ import java.util.List;
 
 public class ToolsCommand extends ABaseCommand {
 
-	public ToolsCommand(String baseExecutor) {
-
-		super(baseExecutor);
+	public ToolsCommand(String executor) {
+		super(executor);
 	}
 
 	@Override

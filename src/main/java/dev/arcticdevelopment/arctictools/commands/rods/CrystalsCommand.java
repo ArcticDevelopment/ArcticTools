@@ -8,8 +8,8 @@ import java.util.List;
 
 public class CrystalsCommand extends ABaseCommand {
 
-	public CrystalsCommand(String baseExecutor) {
-		super(baseExecutor);
+	public CrystalsCommand(String executor) {
+		super(executor);
 	}
 
 	@Override
