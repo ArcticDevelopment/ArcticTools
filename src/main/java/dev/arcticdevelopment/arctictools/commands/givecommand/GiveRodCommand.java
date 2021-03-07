@@ -1,4 +1,4 @@
-package dev.arcticdevelopment.arctictools.commands;
+package dev.arcticdevelopment.arctictools.commands.givecommand;
 
 import de.tr7zw.nbtapi.NBTItem;
 import dev.arcticdevelopment.arctictools.ArcticTools;
@@ -6,6 +6,8 @@ import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.arcticdevelopment.arctictools.utilities.NBTTag;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import dev.kyro.arcticapi.misc.AOutput;
+import dev.kyro.arcticapi.misc.AUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -19,9 +21,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.List;
 import java.util.UUID;
 
-public class AdminGiveCommand extends ASubCommand {
+public class GiveRodCommand extends ASubCommand {
 
-	public AdminGiveCommand(String executor) {
+	public GiveRodCommand(String executor) {
 
 		super(executor);
 	}
@@ -29,16 +31,35 @@ public class AdminGiveCommand extends ASubCommand {
 	@Override
 	public void execute(CommandSender sender, List<String> args) {
 
-		if (!(sender instanceof Player)) return;
+		System.out.println(args);
 
-		Player player = (Player) sender;
-		Inventory playerInventory = player.getInventory();
+		if(args.size() < 1) {
+
+			AOutput.errorIfPlayer(sender, "Usage: /atools give rod <player>");
+			return;
+		}
+
+		Player targetPlayer = null;
+		for(Player onlinePlayer : Bukkit.getServer().getOnlinePlayers()) {
+
+			if(!onlinePlayer.getName().equalsIgnoreCase(args.get(0))) continue;
+
+			targetPlayer = onlinePlayer;
+			break;
+		}
+		if(targetPlayer == null) {
+
+			AOutput.errorIfPlayer(sender, "That player is not online");
+			return;
+		}
+
+		Inventory playerInventory = targetPlayer.getInventory();
 		ItemStack rodItemStack = new ItemStack(Material.FISHING_ROD);
 		rodItemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 		ItemMeta rodMeta = rodItemStack.getItemMeta();
 
-		if (!player.hasPermission("arctic.tools.admin.give")) {
-			AOutput.error(player, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
+		if (!sender.hasPermission("arctic.tools.admin.give")) {
+			AOutput.errorIfPlayer(sender, ArcticTools.CONFIG.getConfiguration().getString("messages.no-permission"));
 			return;
 		}
 
@@ -54,6 +75,7 @@ public class AdminGiveCommand extends ASubCommand {
 		nbtRod.setString(NBTTag.ROD_UUID.getRef(), identifier);
 
 		RodEnchant.updateRod(nbtRod);
+		AUtil.giveItemSafely(targetPlayer, nbtRod.getItem());
 		playerInventory.addItem(nbtRod.getItem());
 	}
 }

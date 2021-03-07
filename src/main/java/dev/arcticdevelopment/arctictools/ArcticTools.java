@@ -1,9 +1,11 @@
 
 package dev.arcticdevelopment.arctictools;
 
-import dev.arcticdevelopment.arctictools.commands.AdminGiveCommand;
 import dev.arcticdevelopment.arctictools.commands.AdminReloadCommand;
+import dev.arcticdevelopment.arctictools.commands.NewAdminGiveCommand;
 import dev.arcticdevelopment.arctictools.commands.ToolsCommand;
+import dev.arcticdevelopment.arctictools.commands.givecommand.GiveCrystalsCommand;
+import dev.arcticdevelopment.arctictools.commands.givecommand.GiveRodCommand;
 import dev.arcticdevelopment.arctictools.commands.rods.*;
 import dev.arcticdevelopment.arctictools.controllers.FishManager;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
@@ -86,10 +88,14 @@ public class ArcticTools extends JavaPlugin {
 
     private void registerCommands() {
         ABaseCommand toolsCommand = new ToolsCommand("atools");
-        toolsCommand.registerCommand(new AdminGiveCommand("give"));
-        toolsCommand.registerCommand(new AdminCrystalsCommand("crystals"));
+//        toolsCommand.registerCommand(new AdminGiveCommand("give"));
+//        toolsCommand.registerCommand(new AdminCrystalsCommand("crystals"));
         toolsCommand.registerCommand(new AdminDropCommand("drop"));
         toolsCommand.registerCommand(new AdminReloadCommand("reload"));
+
+        ABaseCommand giveCommand = new NewAdminGiveCommand(toolsCommand, "give");
+        giveCommand.registerCommands(new GiveCrystalsCommand("crystals"));
+        giveCommand.registerCommands(new GiveRodCommand("rod"));
 
         ABaseCommand crystalsCommand = new CrystalsCommand("crystals");
         crystalsCommand.registerCommand(new BalanceCommand("bal"));
