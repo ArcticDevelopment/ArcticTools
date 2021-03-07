@@ -98,8 +98,9 @@ public class LootEditorGUI extends AInventoryGUI {
 
 		Inventory inventory = super.getInventory();
 
+		int count = 0;
 		for(ItemStack drop : drops) {
-			inventory.addItem(drop);
+			inventory.setItem(count++, drop);
 		}
 
 		return inventory;
