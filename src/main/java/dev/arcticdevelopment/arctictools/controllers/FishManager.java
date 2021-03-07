@@ -92,7 +92,7 @@ public class FishManager implements Listener {
 
 		if (Math.random() * 20 <= luckLevel ) {
 
-			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();;
+			FishDropRarity rarity = fishDrop.getRarity().getNextRarity();
 
 			fishDrop = FishDrop.getRareDrop(rarity);
 		}
@@ -146,10 +146,8 @@ public class FishManager implements Listener {
 
 		if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
 
-		if (ArcticTools.CONFIG.getConfiguration().getBoolean("enable-worldguard-hook")) {
-			if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
-					|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
-		}
+		if (ArcticTools.CONFIG.getConfiguration().getBoolean("enable-worldguard-hook")
+				&& !WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")) return;
 
 		ItemStack drop = getDrop(player, player.getItemInHand());
 
