@@ -76,6 +76,5 @@ public class GiveRodCommand extends ASubCommand {
 
 		RodEnchant.updateRod(nbtRod);
 		AUtil.giveItemSafely(targetPlayer, nbtRod.getItem());
-		playerInventory.addItem(nbtRod.getItem());
 	}
 }
