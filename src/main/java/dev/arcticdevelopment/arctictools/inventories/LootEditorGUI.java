@@ -3,6 +3,7 @@ package dev.arcticdevelopment.arctictools.inventories;
 import dev.arcticdevelopment.arctictools.utilities.Base64;
 import dev.kyro.arcticapi.data.AData;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
+import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -21,8 +22,8 @@ public class LootEditorGUI extends AInventoryGUI {
 	public static List<ItemStack> drops = new ArrayList<>();
 
 	public LootEditorGUI() {
-//		TODO: Change size and switch .add method to .set (to preserve stack amount)
-		super("Loot Editor", 1);
+
+		super("Loot Editor", 6);
 	}
 
 	@Override
@@ -35,9 +36,14 @@ public class LootEditorGUI extends AInventoryGUI {
 
 		if(event.getClickedInventory() instanceof PlayerInventory) {
 
-			event.setCurrentItem(new ItemStack(Material.AIR));
-			event.getInventory().addItem(clickedItem);
+			if(event.getInventory().firstEmpty() != -1) {
 
+				event.setCurrentItem(new ItemStack(Material.AIR));
+				event.getInventory().setItem(event.getInventory().firstEmpty(), clickedItem);
+			} else {
+
+				AOutput.error(player, "Inventory full");
+			}
 		} else {
 
 			for(int i = event.getSlot(); i < event.getInventory().getSize() - 1; i++) {
@@ -46,8 +52,10 @@ public class LootEditorGUI extends AInventoryGUI {
 			}
 			event.getInventory().setItem(event.getInventory().getSize() - 1, new ItemStack(Material.AIR));
 
-//			event.setCurrentItem(new ItemStack(Material.AIR));
-			player.getInventory().addItem(clickedItem);
+			if(player.getInventory().firstEmpty() != -1) {
+
+				player.getInventory().setItem(player.getInventory().firstEmpty(), clickedItem);
+			}
 		}
 	}
 
@@ -82,6 +90,7 @@ public class LootEditorGUI extends AInventoryGUI {
 			fishingLoot.addToList("rod-loot", Base64.itemTo64(drop));
 		}
 		fishingLoot.saveDataFile();
+		updateDrops();
 	}
 
 	@Override
@@ -89,7 +98,6 @@ public class LootEditorGUI extends AInventoryGUI {
 
 		Inventory inventory = super.getInventory();
 
-		updateDrops();
 		for(ItemStack drop : drops) {
 			inventory.addItem(drop);
 		}
