@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class NewAdminGiveCommand extends ABaseCommand {
+public class GiveCommand extends ABaseCommand {
 
-	public NewAdminGiveCommand(ABaseCommand baseCommand, String executor) {
+	public GiveCommand(ABaseCommand baseCommand, String executor) {
 		super(baseCommand, executor);
 	}
 

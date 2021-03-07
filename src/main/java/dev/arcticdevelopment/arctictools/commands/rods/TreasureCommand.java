@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class AdminDropCommand extends ASubCommand {
+public class TreasureCommand extends ASubCommand {
 
-	public AdminDropCommand(String executor) {
+	public TreasureCommand(String executor) {
 
 		super(executor);
 	}

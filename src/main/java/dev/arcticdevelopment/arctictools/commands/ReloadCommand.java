@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class AdminReloadCommand extends ASubCommand {
+public class ReloadCommand extends ASubCommand {
 
-	public AdminReloadCommand(String executor) {
+	public ReloadCommand(String executor) {
 
 		super(executor);
 	}
