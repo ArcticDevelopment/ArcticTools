@@ -32,7 +32,7 @@ public class LeftClickListener implements Listener {
 		event.setCancelled(true);
 
 		player.openInventory(new RodUpgradeGUI(player).getInventory());
-		ASound.play(player, Sound.BAT_TAKEOFF, 1000, 1);
+		ASound.play(player, Sound.BAT_TAKEOFF, 0.7F, 1);
 	}
 
 }

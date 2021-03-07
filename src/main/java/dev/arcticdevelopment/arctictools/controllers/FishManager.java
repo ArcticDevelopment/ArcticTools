@@ -100,7 +100,7 @@ public class FishManager implements Listener {
 		assert fishDrop != null;
 		drop = new ItemStack(fishDrop.getDrop());
 
-		if(Math.random() * 80 < multiDropLevel) {
+		if(Math.random() * 80 < multiDropLevel * 100) {
 
 			int random3 = (int) (Math.random() * 8) + 3;
 			drop.setAmount(random3 + 1);
@@ -110,7 +110,7 @@ public class FishManager implements Listener {
 				@Override
 				public void run() {
 
-					ASound.play(player, Sound.ORB_PICKUP, (float) (0.7 + (count * 0.03)));
+					ASound.play(player, Sound.ORB_PICKUP, 0.7F, (float) (0.7 + (count * 0.03)));
 
 					if(++count == random3) cancel();
 				}
