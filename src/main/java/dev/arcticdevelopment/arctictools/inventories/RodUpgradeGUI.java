@@ -1,6 +1,7 @@
 package dev.arcticdevelopment.arctictools.inventories;
 
 import de.tr7zw.nbtapi.NBTItem;
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.controllers.LeaderboardManager;
 import dev.arcticdevelopment.arctictools.controllers.RodEnchant;
 import dev.kyro.arcticapi.builders.AInventoryBuilder;
@@ -127,10 +128,12 @@ public class RodUpgradeGUI extends AInventoryGUI {
 	@Override
 	public void onOpen(InventoryOpenEvent event) {
 
+		ArcticTools.openInventories.put((Player) event.getPlayer(), event.getInventory());
 	}
 
 	@Override
 	public void onClose(InventoryCloseEvent event) {
 
+		ArcticTools.openInventories.entrySet().removeIf(entry -> entry.getKey() == event.getPlayer());
 	}
 }

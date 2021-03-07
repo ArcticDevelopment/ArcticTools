@@ -1,5 +1,6 @@
 package dev.arcticdevelopment.arctictools.inventories;
 
+import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.utilities.Base64;
 import dev.kyro.arcticapi.data.AData;
 import dev.kyro.arcticapi.gui.AInventoryGUI;
@@ -75,11 +76,13 @@ public class LootEditorGUI extends AInventoryGUI {
 	@Override
 	public void onOpen(InventoryOpenEvent event) {
 
-
+		ArcticTools.openInventories.put((Player) event.getPlayer(), event.getInventory());
 	}
 
 	@Override
 	public void onClose(InventoryCloseEvent event) {
+
+		ArcticTools.openInventories.entrySet().removeIf(entry -> entry.getKey() == event.getPlayer());
 
 		AData fishingLoot = new AData("fishing-loot");
 		fishingLoot.getConfiguration().set("rod-loot", new ArrayList<>());

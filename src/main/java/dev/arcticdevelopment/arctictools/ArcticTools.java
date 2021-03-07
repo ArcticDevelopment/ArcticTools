@@ -1,8 +1,8 @@
 
 package dev.arcticdevelopment.arctictools;
 
-import dev.arcticdevelopment.arctictools.commands.ReloadCommand;
 import dev.arcticdevelopment.arctictools.commands.GiveCommand;
+import dev.arcticdevelopment.arctictools.commands.ReloadCommand;
 import dev.arcticdevelopment.arctictools.commands.ToolsCommand;
 import dev.arcticdevelopment.arctictools.commands.givecommand.GiveCrystalsCommand;
 import dev.arcticdevelopment.arctictools.commands.givecommand.GiveRodCommand;
@@ -23,15 +23,21 @@ import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ArcticTools extends JavaPlugin {
+
+    public static Map<Player, Inventory> openInventories = new HashMap<>();
 
     public static ArcticTools INSTANCE;
     public static Plugin WORLDGUARD;
@@ -77,7 +83,10 @@ public class ArcticTools extends JavaPlugin {
     @Override
     public void onDisable() {
 
+        for(Map.Entry<Player, Inventory> entry : openInventories.entrySet()) {
 
+            entry.getKey().closeInventory();
+        }
     }
 
     private void loadConfig() {
