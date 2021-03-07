@@ -22,17 +22,21 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FishManager implements Listener {
 
 	public static List<TreasureDrop> treasureDrops = new ArrayList<>();
+	public static Map<Item, Player> recentlyFished = new HashMap<>();
 
 	public FishManager() {
 
@@ -93,9 +97,9 @@ public class FishManager implements Listener {
 			fishDrop = FishDrop.getRareDrop(rarity);
 		}
 
+		assert fishDrop != null;
 		drop = new ItemStack(fishDrop.getDrop());
 
-//		TODO: Change to final value
 		if(Math.random() * 80 < multiDropLevel) {
 
 			int random3 = (int) (Math.random() * 8) + 3;
@@ -126,6 +130,14 @@ public class FishManager implements Listener {
 		setBiteTime(event.getHook(), (int) (Math.pow(0.9, lureLevel) * 350));
 	}
 
+	@EventHandler
+	public static void onItemPickup(PlayerPickupItemEvent event) {
+
+		if(!recentlyFished.containsKey(event.getItem()) || recentlyFished.get(event.getItem()) == event.getPlayer()) return;
+
+		event.setCancelled(true);
+	}
+
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public static void onFish(PlayerFishEvent event) {
 
@@ -134,16 +146,21 @@ public class FishManager implements Listener {
 
 		if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
 
-
 		if (ArcticTools.CONFIG.getConfiguration().getBoolean("enable-worldguard-hook")) {
 			if (!WorldGuardHook.hasFlag(player.getLocation(),"arctic-fishing")
 					|| !event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) return;
 		}
 
-
 		ItemStack drop = getDrop(player, player.getItemInHand());
 
 		((Item) event.getCaught()).setItemStack(drop);
+		recentlyFished.put((Item) event.getCaught(), player);
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				recentlyFished.entrySet().removeIf(entry -> entry.getKey() == event.getCaught());
+			}
+		}.runTaskLater(ArcticTools.INSTANCE, 60L);
 
 		NBTItem nbtItem = new NBTItem(event.getPlayer().getItemInHand());
 		int totalFish = nbtItem.getInteger(NBTTag.ROD_FISH.getRef()) + 1;
