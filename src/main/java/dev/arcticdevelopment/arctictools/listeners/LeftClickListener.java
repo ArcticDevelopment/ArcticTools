@@ -27,9 +27,6 @@ public class LeftClickListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public static void onLeftClick(PlayerInteractEvent event) {
 
-//		TODO: When you right click with a rod it also left clicks???
-		//System.out.println(event.getAction().toString());
-
 		Player player = event.getPlayer();
 
 		if (player.getItemInHand() == null || player.getItemInHand().getType() != Material.FISHING_ROD) return;
