@@ -100,7 +100,7 @@ public class FishManager implements Listener {
 		assert fishDrop != null;
 		drop = new ItemStack(fishDrop.getDrop());
 
-		if(Math.random() * 80 < multiDropLevel * 100) {
+		if(Math.random() * 80 < multiDropLevel) {
 
 			int random3 = (int) (Math.random() * 8) + 3;
 			drop.setAmount(random3 + 1);
