@@ -14,11 +14,14 @@ import dev.arcticdevelopment.arctictools.controllers.SoulboundManager;
 import dev.arcticdevelopment.arctictools.enchants.rods.*;
 import dev.arcticdevelopment.arctictools.inventories.LootEditorGUI;
 import dev.arcticdevelopment.arctictools.listeners.LeftClickListener;
+import dev.arcticdevelopment.arctictools.placeholders.CrystalPlaceholder;
+import dev.arcticdevelopment.arctictools.placeholders.FormattedCrystalPlaceholder;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
 import dev.kyro.arcticapi.data.AData;
+import dev.kyro.arcticapi.hooks.AHook;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
@@ -63,6 +66,11 @@ public class ArcticTools extends JavaPlugin {
         loadConfig();
 
         ArcticAPI.configInit(this, "prefix", "error-prefix");
+
+        ArcticAPI.setupPlaceholderAPI("atools");
+        AHook.registerPlaceholder(new CrystalPlaceholder());
+        AHook.registerPlaceholder(new FormattedCrystalPlaceholder());
+
         CONFIG = new AData("config");
 
         LeaderboardManager.init();

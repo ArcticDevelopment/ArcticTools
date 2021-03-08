@@ -19,15 +19,12 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.ArcticDevelopment:ArcticAPI:585b82c0b7'
+    compile 'com.github.ArcticDevelopment:ArcticAPI:854b5ee200'
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
     compile 'de.tr7zw:item-nbt-api-plugin:2.7.1'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
     compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
-
-
-    //compile 'com.github.tr7zw:Item-NBT-API:2.7.1'
 }
 shadowJar {
 
