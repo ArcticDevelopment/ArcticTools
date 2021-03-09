@@ -20,6 +20,7 @@ import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDropRarity;
 import dev.kyro.arcticapi.ArcticAPI;
 import dev.kyro.arcticapi.commands.ABaseCommand;
+import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.AData;
 import dev.kyro.arcticapi.hooks.AHook;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
@@ -100,6 +101,7 @@ public class ArcticTools extends JavaPlugin {
 
         getConfig().options().copyDefaults(true);
         saveConfig();
+
     }
 
     private void registerCommands() {
@@ -253,5 +255,6 @@ public class ArcticTools extends JavaPlugin {
         itemMeta14.setDisplayName(ChatColor.translateAlternateColorCodes('&',"&8[&r&k|||&r&b&nDivine&r&k|||&8]&r &7Shard"));
         item14.setItemMeta(itemMeta14);
         new FishDrop(item14, FishDropRarity.DIVINE,40 * multiplier);
+
     }
 }
