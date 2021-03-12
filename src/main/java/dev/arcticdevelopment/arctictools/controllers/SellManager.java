@@ -2,6 +2,7 @@ package dev.arcticdevelopment.arctictools.controllers;
 
 import dev.arcticdevelopment.arctictools.ArcticTools;
 import dev.arcticdevelopment.arctictools.utilities.rods.FishDrop;
+import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -38,7 +39,11 @@ public class SellManager {
 				}
 			}
 		}
-		AOutput.send(player, "Sold &b" + counter + "&f fish for &b$" + total + "&f.");
+
+		String message = AConfig.getString("messages.sell-fish");
+		message = message.replaceAll("%amountsold%", String.valueOf(counter));
+		message = message.replaceAll("%totalmoney%", String.valueOf(total));
+		AOutput.send(player, message);
 
 		ArcticTools.VAULT.depositPlayer(player, total);
 	}

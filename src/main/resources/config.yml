@@ -1,22 +1,36 @@
+#                      _   _        _______          _        #
+#       /\            | | (_)      |__   __|        | |       #
+#      /  \   _ __ ___| |_ _  ___     | | ___   ___ | |___    #
+#     / /\ \ | '__/ __| __| |/ __|    | |/ _ \ / _ \| / __|   #
+#    / ____ \| | | (__| |_| | (__     | | (_) | (_) | \__ \   #
+#   /_/    \_\_|  \___|\__|_|\___|    |_|\___/ \___/|_|___/   #
 
 
+#plugin prefix
 prefix: "&7[&b&lA&7]&f "
-#prefix
+
+#prefix displayed on error messages
 error-prefix: "&8[&c&lA&8]&f "
+
+
+#adjusts fish sell price, use to adjust this plugin to be balanced in your economy
 fish-multiplier: 10000000
 
 
 
 Sounds:
+
+#customize the lore and name of the fishing rod
 rod-name: "&b&lEnhanced &7Fishing Rod"
 rod-description:
   - "&7Cast this &benhanced rod &7in the &3darkzone &7for &7treasures"
   - "&bShift &bleft&7-&bclick &7while holding to upgrade"
 
 
-
+#Do you want to allow fishing only in certian areas? Use worldguard flag "arctic-fishing" to allow fishing when enabled
 enable-worldguard-hook: true
 
-
+#Customize plugin messages
 messages:
   no-permission: 'You do not have permission to use this command'
+  sell-fish: 'Sold&b %amountsold% &f fish for &b$ %totalmoney% &f.'
